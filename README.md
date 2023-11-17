@@ -1,27 +1,25 @@
-# dsci522_group14
-
 # Credit Card Fraud Detection
 
 - Author: Jenny Lee, Shawn X. Hu, Koray Tecimer, Iris Luo
 
-Contains analytical report generated for the milestone 1 of DSCI 522; a course offeredd through the Master of Data Science program at University of British Columbia. 
+Contains an analytical report generated for Milestone 1 of DSCI 522, a course offered through the Master of Data Science program at the University of British Columbia.
 
 ## About
-Through this project, we built three classification models that can distinguish between fraud and non-fraud transactions marked on customer accounts. Data preprocessing steps are also included in `fraud_detection.ipynb`. The list of models that we tried are logistic regression, random forest classifier, and gradient boost classifier. Due to an extrememe imbalance in our data, we were not successful in building an effective model in milestone 1. We included some suggestions for future steps in discussion. 
+Through this project, we attempted to build three classification models capable of distinguishing between fraud and non-fraud transactions, as indicated on customer accounts. Data preprocessing steps are also described in `fraud_detection.ipynb`. The models we experimented with include logistic regression, random forest classifier, and gradient boost classifier. Due to an extreme imbalance in our data, we encountered challenges in developing an effective model in milestone 1. In the discussion, we have provided some suggestions for future steps.
 
 ### Data
-Our data is retrieved from [Capital One GitHub for Data Scientist Recruitment](https://github.com/CapitalOneRecruiting/DS). The data comprises of 786363 entries of synthetically generated data. 
+Our data is sourced from the [Capital One GitHub for Data Scientist Recruitment](https://github.com/CapitalOneRecruiting/DS). The data consists of 786363 entries of synthetically generated data. 
 
 ![isfraud](visualization/isfraud.png)
 
-As seen from the graph above, our dataset is extremely unbalanced. Due to the imbalance in data our models suffered from achieving high scoring metric value (f1). 
+As depicted in the graph above, our dataset exhibits a significant imbalance. The imbalanced nature of the data significantly affected the performance of our models, preventing them from achieving a high scoring metric value (f1). 
 
 ### Usage
-Packages with detailed versions used in this project can be found below. To run the project, copy and paste the code below on local terminal. 
+Below are the packages along with their detailed versions used in this project. To run the project, copy and paste the code provided into your local terminal.
 ```
 conda env create —file environmentgroup14.yml
 ```
-To run the project, copy and paste the commands below on local commands from your root directory.
+To run the project, copy and paste the commands below into your local terminal from the project's root directory.
 ```
 conda activate 522group14
 jupyter lab
@@ -32,7 +30,7 @@ jupyter lab
 - `nb_conda_kernels` (version 2.3.1 or higher)
 - Python packages listed in `environmentgroup14.yml`.
 
-#### Disclaimer
+### Disclaimer
 The overall format of `README.md` is retrieved from the [sample project repository](https://github.com/ttimbers/breast_cancer_predictor_py/tree/0.0.1). 
 
 ### References
