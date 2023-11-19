@@ -39,6 +39,11 @@ Click on the `Run All` button once Jupyter Lab has been successfully launched.
 -   `nb_conda_kernels` (version 2.3.1 or higher)
 -   Python packages listed in `environment.yml`.
 
+## License
+Licenses used in this project are listed below. More detailed information can be found at `LICENSE.md`. 
+- MIT License
+- Copyright (c) 2023 Master of Data Science at the University of British Columbia
+
 ## Disclaimer
 
 The overall format of `README.md` is retrieved from the [sample project repository](https://github.com/ttimbers/breast_cancer_predictor_py/tree/0.0.1).
