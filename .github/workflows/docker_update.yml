@@ -7,6 +7,7 @@
 # To get a newer version, you will need to update the SHA.
 # You can also reference a tag or branch, but the action may change without warning.
 
+# Code taken from DSCI522 course in UBC MDS. Author: Tiffany Timbers
 name: Publish Docker image
 
 on: 
@@ -45,5 +46,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: |
+            latest
+            ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
