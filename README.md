@@ -16,6 +16,21 @@ Our data is sourced from the [Capital One GitHub for Data Scientist Recruitment]
 
 As depicted in the graph above, our dataset exhibits a significant imbalance. The imbalanced nature of the data significantly affected the performance of our models, preventing them from achieving a high scoring metric value (f1).
 
+## Quick Start (Docker)
+
+Navigate to project folder
+```         
+cd/to/fraud_detection
+```
+
+Run:
+```
+docker-compose up
+```
+
+Locate your url with token from the log and paste it in your browser to access container and project.
+Should be something like `http://127.0.0.1:8888/lab?token=token_hash`
+
 ## Usage
 
 Below are the packages along with their detailed versions used in this project. To run the project, copy and paste the code provided into your local terminal.
