@@ -1,0 +1,7 @@
+services:
+  fraud_detection:
+    image: notebook
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./notebooks:/home/jovyan/work
