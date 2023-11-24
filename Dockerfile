@@ -8,8 +8,3 @@ RUN conda install -y pandas=2.1.2 \
     scikit-learn=1.3.2 \
     matplotlib=3.8.0 \
     seaborn=0.13.0
-
-
-COPY . /home/jovyan/work/
-
-ENTRYPOINT ["jupyter", "notebook"]
