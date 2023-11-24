@@ -14,7 +14,6 @@ name: Publish Docker image
 on: 
   push: 
     branches:
-      - main
       - feature-docker-integration
     paths: 
       - 'Dockerfile'
