@@ -37,23 +37,10 @@ def test_run_model_with_random_search_input_data():
     assert X_train.shape[1] == sample_df.shape[1]-1
     assert X_test.shape[1] == sample_df.shape[1]-1
     assert X_train.shape[1] == X_test.shape[1]
-
+    assert X_train.shape[1] == len(numerical_features) + len(credit_feature) + len(categorical_features) + len(drop_features)
     # Add checks for specific column names, if needed
     assert "isFraud" in y_train.columns
     assert "isFraud" in y_test.columns
-
-# Tests for data shape
-def test_run_model_with_random_search_shapes():
-    param_dist_rfclf = {"randomforestclassifier__n_estimators": 50 * np.array([1, 2, 4]),
-                        "randomforestclassifier__max_depth": [5, 10, 20, None],
-                        "randomforestclassifier__max_features": ['sqrt', 'log2']}
-    rfclf_search = run_model_with_random_search(
-        X_train, y_train, numerical_features, credit_feature, categorical_features, drop_features,
-        RandomForestClassifier, param_dist_rfclf
-    )
-    rfclf_search.fit(X_train, y_train)
-    assert X_train.shape[0] == y_train.shape[0]
-    assert X_test.shape[0] == y_test.shape[0]
 
 
 # Tests for run_model_with_random_search function

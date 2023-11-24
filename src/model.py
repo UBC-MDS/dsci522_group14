@@ -47,6 +47,34 @@ def run_model_with_random_search(
     logreg_search.fit(X_train, y_train)
     ```
     """
+    # Input validation
+    if not isinstance(X_train, pd.DataFrame):
+        raise ValueError("X_train must be a DataFrame.")
+    if not isinstance(y_train, pd.Series):
+        raise ValueError("y_train must be a Series.")
+    if X_train.shape[0] != y_train.shape[0]:
+        raise ValueError("Number of rows in X_train and y_train must match.")
+    if X_train.shape[1] != len(numerical_features) + len(credit_feature) + len(categorical_features) + len(drop_features):
+        raise ValueError("Mismatch in the number of features.")
+    
+    # Check for duplicate feature names
+    all_features = set(numerical_features + credit_feature + categorical_features + drop_features)
+    if len(all_features) != len(numerical_features) + len(credit_feature) + len(categorical_features) + len(drop_features):
+        raise ValueError("Duplicate feature names found.")
+    
+    # Ensure all features are non-empty strings
+    if not all(isinstance(feature, str) and feature for feature in all_features):
+        raise ValueError("All feature names must be non-empty strings.")
+    
+    # Check for overlapping features between numerical and categorical features
+    if any(feature in numerical_features for feature in categorical_features):
+        raise ValueError("Numerical and categorical features must not overlap.")
+    
+    # Check if numerical and credit features have any common elements
+    if any(feature in numerical_features for feature in credit_feature):
+        raise ValueError("Numerical and credit features must not have common elements.")
+
+    
     ct = make_column_transformer(
         (
         make_pipeline(SimpleImputer(strategy="median"), StandardScaler()),
