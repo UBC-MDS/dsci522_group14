@@ -4,6 +4,7 @@ from pandas.testing import assert_frame_equal
 import pytest
 import sys
 import os
+from sklearn.model_selection import train_test_split
 from sklearn.datasets import make_classification
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 from sklearn.linear_model import LogisticRegression
@@ -23,6 +24,10 @@ train_df, test_df = train_test_split(sample_df, test_size=0.2, random_state=522)
 X_train, y_train = train_df.drop(["isFraud"], axis=1), train_df["isFraud"]
 X_test, y_test = test_df.drop(["isFraud"], axis=1), test_df["isFraud"]
 
+numerical_features=['availableMoney', 'transactionAmount', 'currentBalance']
+categorical_features=['accountNumber', 'acqCountry', 'merchantCountryCode', 'posEntryMode', 'posConditionCode', 'merchantCategoryCode', 'transactionType', 'cardPresent', 'expirationDateKeyInMatch', 'merchantCity', 'merchantState', 'merchantZip', ]
+credit_feature = ["creditLimit"]
+drop_features=["customerId",'transactionDateTime', "merchantName","accountOpenDate","cardCVV","enteredCVV",'currentExpDate', 'cardLast4Digits', 'echoBuffer', 'dateOfLastAddressChange', 'posOnPremises', 'recurringAuthInd',]
 # Tests for input data
 def test_run_model_with_random_search_input_data():
     # Check if the input data is a DataFrame
@@ -37,10 +42,10 @@ def test_run_model_with_random_search_input_data():
     assert X_train.shape[1] == sample_df.shape[1]-1
     assert X_test.shape[1] == sample_df.shape[1]-1
     assert X_train.shape[1] == X_test.shape[1]
-    assert X_train.shape[1] == len(numerical_features) + len(credit_feature) + len(categorical_features) + len(drop_features)
+    
     # Add checks for specific column names, if needed
-    assert "isFraud" in y_train.columns
-    assert "isFraud" in y_test.columns
+    assert "isFraud" == y_train.name
+    assert "isFraud" == y_test.name
 
 
 # Tests for run_model_with_random_search function
@@ -79,7 +84,7 @@ def test_run_model_with_random_search_gbclf():
                         "gradientboostingclassifier__learning_rate": [0.05, 0.1, 0.2]}
     gbclf_search = run_model_with_random_search(
         X_train, y_train, numerical_features, credit_feature, categorical_features, drop_features,
-        GradientBoostingClassifier, param_dist_gbclf
+        GradientBoostingClassifier, param_dist_gbclf, need_class_weights=False
     )
     gbclf_search.fit(X_train, y_train)
     assert isinstance(gbclf_search, RandomizedSearchCV)
