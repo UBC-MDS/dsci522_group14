@@ -55,6 +55,8 @@ def test_run_model_with_random_search_logreg():
     assert isinstance(logreg_search, RandomizedSearchCV)
     assert hasattr(logreg_search, "best_score_")
     assert hasattr(logreg_search, "best_params_")
+    assert isinstance(logreg_search.best_score_, float)
+    assert isinstance(logreg_search.best_params_, dict)
 
 def test_run_model_with_random_search_rfclf():
     param_dist_rfclf = {"randomforestclassifier__n_estimators": 50 * np.array([1, 2, 4]),
@@ -68,6 +70,8 @@ def test_run_model_with_random_search_rfclf():
     assert isinstance(rfclf_search, RandomizedSearchCV)
     assert hasattr(rfclf_search, "best_score_")
     assert hasattr(rfclf_search, "best_params_")
+    assert isinstance(rfclf_search.best_score_, float)
+    assert isinstance(rfclf_search.best_params_, dict)
 
 def test_run_model_with_random_search_gbclf():
     param_dist_gbclf = {"gradientboostingclassifier__n_estimators": 50 * np.array([1, 2, 4]),
@@ -81,3 +85,5 @@ def test_run_model_with_random_search_gbclf():
     assert isinstance(gbclf_search, RandomizedSearchCV)
     assert hasattr(gbclf_search, "best_score_")
     assert hasattr(gbclf_search, "best_params_")
+    assert isinstance(gbclf_search.best_score_, float)
+    assert isinstance(gbclf_search.best_params_, dict)
