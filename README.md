@@ -16,6 +16,11 @@ Our data is sourced from the [Capital One GitHub for Data Scientist Recruitment]
 
 As depicted in the graph above, our dataset exhibits a significant imbalance. The imbalanced nature of the data significantly affected the performance of our models, preventing them from achieving a high scoring metric value (f1).
 
+## Report
+Our final report can be found here.
+- PDF: https://github.com/UBC-MDS/fraud_detection/blob/main/fraud_detection.pdf
+- HTML: https://github.com/UBC-MDS/fraud_detection/blob/main/fraud_detection.html (Can be rendered locally)
+
 ## Quick Start (Docker)
 
 Navigate to project folder
