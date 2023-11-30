@@ -36,26 +36,11 @@ docker-compose up
 
 Locate your url with token from the log and paste it in your browser to access container and project. Should be something like `http://127.0.0.1:8888/lab?token=token_hash`
 
-## Usage
-
-Below are the packages along with their detailed versions used in this project. To run the project, copy and paste the code provided into your local terminal.
-
-```         
-conda env create —f environment.yml
-```
-
-To run the project, copy and paste the commands below into your local terminal from the project's root directory.
-
-```         
-conda activate 522group14
-jupyter lab
-```
-
 To run the analysis you can run the commands below
 
 ```         
 # Download and Write data:
-!python scripts/download_data.py --url="https://github.com/CapitalOneRecruiting/DS/blob/173ca4399629f1e4e74146107eb9bef1e7009741/transactions.zip?raw=true" --write-to="data/transactions.pkl.zip"
+python scripts/download_data.py --url="https://github.com/CapitalOneRecruiting/DS/blob/173ca4399629f1e4e74146107eb9bef1e7009741/transactions.zip?raw=true" --write-to="data/transactions.pkl.zip"
 ```
 
 ## Dependencies
