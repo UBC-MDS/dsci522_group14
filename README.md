@@ -17,24 +17,24 @@ Our data is sourced from the [Capital One GitHub for Data Scientist Recruitment]
 As depicted in the graph above, our dataset exhibits a significant imbalance. The imbalanced nature of the data significantly affected the performance of our models, preventing them from achieving a high scoring metric value (f1).
 
 ## Report
-Our final report can be found here.
-- PDF: https://github.com/UBC-MDS/fraud_detection/blob/main/fraud_detection.pdf
-- HTML: https://github.com/UBC-MDS/fraud_detection/blob/main/fraud_detection.html (Can be rendered locally)
+
+Our final report can be found here. - PDF: <https://github.com/UBC-MDS/fraud_detection/blob/main/fraud_detection.pdf> - HTML: <https://github.com/UBC-MDS/fraud_detection/blob/main/fraud_detection.html> (Can be rendered locally)
 
 ## Quick Start (Docker)
 
 Navigate to project folder
+
 ```         
 cd/to/fraud_detection
 ```
 
 Run:
-```
+
+```         
 docker-compose up
 ```
 
-Locate your url with token from the log and paste it in your browser to access container and project.
-Should be something like `http://127.0.0.1:8888/lab?token=token_hash`
+Locate your url with token from the log and paste it in your browser to access container and project. Should be something like `http://127.0.0.1:8888/lab?token=token_hash`
 
 ## Usage
 
@@ -51,7 +51,12 @@ conda activate 522group14
 jupyter lab
 ```
 
-Click on the `Run All` button once Jupyter Lab has been successfully launched.
+To run the analysis you can run the commands below
+
+```         
+# Download and Write data:
+!python scripts/download_data.py --url="https://github.com/CapitalOneRecruiting/DS/blob/173ca4399629f1e4e74146107eb9bef1e7009741/transactions.zip?raw=true" --write-to="data/transactions.pkl.zip"
+```
 
 ## Dependencies
 
@@ -60,9 +65,8 @@ Click on the `Run All` button once Jupyter Lab has been successfully launched.
 -   Python packages listed in `environment.yml`.
 
 ## License
-Licenses used in this project are listed below. More detailed information can be found at `LICENSE.md`. 
-- MIT License
-- Copyright (c) 2023 Master of Data Science at the University of British Columbia
+
+Licenses used in this project are listed below. More detailed information can be found at `LICENSE.md`. - MIT License - Copyright (c) 2023 Master of Data Science at the University of British Columbia
 
 ## Disclaimer
 
