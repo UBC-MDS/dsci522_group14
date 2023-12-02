@@ -6,7 +6,7 @@ from io import BytesIO
 import pickle
 from io import StringIO
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-from src.preprocessing import generalize_categories
+from src.preprocessing import generalize_categories, count_unique_numbers
 
 # Libraries needed for the preprocessing step
 from sklearn.model_selection import train_test_split
@@ -40,6 +40,9 @@ def main(df_path, path):
                   'isFraud',
                   'CVVmatched'
                   ]
+      
+      count_df = count_unique_numbers(df, categorical_features)
+      count_df.to_pickle(path+"/preprocessed/count_df.pkl", compression='zip')
     
       numerical_features = ['creditLimit', 'availableMoney', 'transactionAmount', 'currentBalance']
 
