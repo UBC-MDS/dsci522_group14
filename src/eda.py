@@ -1,45 +1,76 @@
-def eda_process(df):
-    """
-    Process the input DataFrame by counting the number of empty strings in each column, 
-    printing these counts, and then dropping specified columns or any columns with more 
-    than 50,000 empty strings.
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pandas as pd
+import warnings
 
-    This function performs the following tasks:
-    1. Counts and prints the number of empty strings ('') in each column of the DataFrame.
-    2. Drops any columns with more than 50,000 empty strings.
-    3. Additionally, drops a predefined set of columns from the DataFrame.
+warnings.filterwarnings('ignore')
+
+def eda_process(df):
+    '''
+    Perform a full exploratory data analysis (EDA) on the given DataFrame.
 
     Parameters:
     df (pandas.DataFrame): The DataFrame to be processed.
 
     Returns:
-    pandas.DataFrame: The modified DataFrame with specified columns and any columns with 
-                      excessive empty strings dropped.
+    None: This function only displays plots and does not return any value.
+    '''
 
-    Note:
-    This function modifies the input DataFrame in-place. Therefore, the original DataFrame 
-    passed to this function will be altered.
-
-    Example usage:
-    >>> processed_df = process_dataframe(your_dataframe)
-    """
-
-    def count_empty_strings(column):
-        return (column == '').sum()
-
-    # Count empty strings in each column
-    empty_string_counts = df.apply(count_empty_strings)
-
-    # Print the counts of empty strings
+    # Process the DataFrame by counting and removing empty strings
+    empty_string_counts = df.apply(lambda column: (column == '').sum())
     print(empty_string_counts)
 
-    # Drop columns with more than 50,000 empty strings
     columns_to_drop = [col for col, count in empty_string_counts.items() if count > 50000]
-
-    # Add additional specific columns to drop
     columns_to_drop.extend(['echoBuffer', 'merchantCity', 'merchantZip', 'posOnPremises', 'recurringAuthInd', 'merchantState'])
-
-    # Drop the columns
     df.drop(columns=columns_to_drop, axis=1, inplace=True)
 
-    return df
+    # Selecting numerical and categorical features
+    numerical_features = df.select_dtypes(include=['int64', 'float64']).columns
+    categorical_features = df.select_dtypes(include=['object', 'bool']).columns
+
+    # Creating feature plots
+    total_plots = len(numerical_features) + len(categorical_features)
+    num_rows = (total_plots + 1) // 2
+
+    fig, axes = plt.subplots(num_rows, 2, figsize=(15, 5 * num_rows))
+    axes = axes.ravel()
+
+    for i, col in enumerate(numerical_features):
+        sns.histplot(df[col], ax=axes[i], kde=False, bins=30)
+        axes[i].set_title(f'Histogram of {col}')
+        axes[i].set_ylabel('Count')
+
+    for j, col in enumerate(categorical_features, start=len(numerical_features)):
+        counts = df[col].value_counts().nlargest(10)
+        sns.barplot(x=counts.index, y=counts.values, ax=axes[j])
+        axes[j].set_title(f'Frequency of Top 10 {col}')
+        axes[j].set_xticklabels(axes[j].get_xticklabels(), rotation=45)
+        axes[j].set_ylabel('Count')
+
+    plt.tight_layout()
+    plt.show()
+
+    # Creating box plots for numerical features
+    for col in numerical_features:
+        plt.figure(figsize=(8, 4))
+        sns.boxplot(data=df, x=col)
+        plt.title(f'Box plot of {col}')
+        plt.show()
+
+    # Creating a correlation matrix heatmap for numerical features
+    plt.figure(figsize=(10, 8))
+    sns.heatmap(df[numerical_features].corr(), annot=True, cmap='coolwarm')
+    plt.title('Correlation Matrix of Numerical Features')
+    plt.show()
+    # creating time series plot 
+    time_col= 'transactionDateTime'
+    value_col= 'transactionAmount'
+    plt.figure(figsize=(15, 4))
+    df.set_index(time_col)[value_col].plot()
+    plt.title(f'{value_col} Over Time')
+    plt.xlabel(time_col)
+    plt.ylabel(value_col)
+    plt.show()
+
+# Example usage
+eda_process(df)
