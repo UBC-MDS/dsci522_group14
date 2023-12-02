@@ -25,6 +25,7 @@ def main(df_path, path):
 
     columns_to_drop = [col for col, count in empty_string_counts.items() if count > 50000]
     columns_to_drop.extend(['echoBuffer', 'merchantCity', 'merchantZip', 'posOnPremises', 'recurringAuthInd', 'merchantState'])
+
     df_drop=df.drop(columns=columns_to_drop, axis=1, inplace=False)
     directory = 'data/preprocessed/raw_df.pkl'
     df_drop.to_pickle(directory)
@@ -53,7 +54,7 @@ def main(df_path, path):
     plt.tight_layout()
     path = './data/'  # Adjust the path as necessary
     plt.savefig('data/combined_plots.png')
-    
+
 
 # Example usage
 if __name__ == "__main__":
