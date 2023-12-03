@@ -10,4 +10,5 @@ RUN conda install -y pandas=2.1.2 \
     seaborn=0.13.0 \
     pytest=7.4.3 \
     click=8.1.7 \
-    jupyter-book=0.15.1
+    jupyter-book=0.15.1 \
+    altair=5.1.2
