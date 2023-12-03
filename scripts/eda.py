@@ -68,7 +68,5 @@ def main(df_path, save_to, write_to):
 
     df.to_pickle(f"{write_to}")
     
-# Example usage
 if __name__ == "__main__":
-  
     main()

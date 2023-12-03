@@ -45,21 +45,21 @@ python scripts/download_data.py \
 
 # Exploratory data analysis and data wrangling
 python scripts/eda.py \
-   --df-path=data/transactions/pkl.zip \
+   --df-path=data/transactions.pkl.zip \
    --save-to=visualization \
-   --write-to=data/preprocessed/eda_processed.pkl\
+   --write-to=data/preprocessed/eda_processed.pkl
 
 # Perform additional data preprocessing to avoid curse of dimensionality
 python scripts/preprocessing_data.py \
-   --df-path-data=data/raw_processed.pkl \
-   --path=data
+   --df-path=data/preprocessed/eda_processed.pkl \
+   --write-to=data
 
 # train model, create visualize tuning, and save plot and model
-python scripts/modeling.py \
+python scripts/model.py \
    --df-path=data/preprocessed \
    --ct-path=data/transformers/ct.pkl \
    --table-to=data/preprocessed/model_tabel.csv\
-   -plot-to=visualization
+   --plot-to=visualization
 
 # build HTML report and copy build to docs folder
 jupyter-book build report

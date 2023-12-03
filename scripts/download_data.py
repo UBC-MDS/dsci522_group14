@@ -15,7 +15,7 @@ def main(url, write_to):
     """Downloads data from a URL and writes it to a specified directory"""
     df = download_data(url)
     df.to_pickle(write_to, compression='zip') 
-    print("Downloading data from {} and writing it to {}".format(url, write_to))
+    print("Downloaded data from {} and wrote it to {}".format(url, write_to))
 
 def download_data(url):
     """Downloads data from a URL and converts it into a pandas dataframe"""
