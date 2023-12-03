@@ -8,8 +8,9 @@ import click
 
 @click.command()
 @click.option('--df-path', type=str, help="Path to get the downloaded dataset")
-@click.option('--path', type=str, help="Path to directory where raw data will be written to")
-def main(df_path, path):
+@click.option('--save-to', type=str, help="Path to get save the plots")
+@click.option('--write-to', type=str, help="Path to directory where raw data will be written to")
+def main(df_path, save_to, write_to):
     """
     Perform a full exploratory data analysis (EDA) on the given DataFrame.
 
@@ -23,15 +24,13 @@ def main(df_path, path):
     df = pd.read_pickle(df_path, compression="infer")
     # Process the DataFrame by counting and removing empty strings
     empty_string_counts = df.apply(lambda column: (column == '').sum())
-    print(empty_string_counts)
 
     columns_to_drop = [col for col, count in empty_string_counts.items() if count > 50000]
     columns_to_drop.extend(['echoBuffer', 'merchantCity', 'merchantZip', 'posOnPremises', 'recurringAuthInd', 'merchantState'])
     df.drop(columns=columns_to_drop, axis=1, inplace=True)
-    directory = 'data/preprocessed/raw_df.pkl'
-    df.to_pickle(directory)
+
     empty_string_counts = df.apply(lambda column: (column == '').sum())
-    print(empty_string_counts)
+
     # Selecting numerical and categorical features
     numerical_features = df.select_dtypes(include=['int64', 'float64']).columns
     categorical_features = df.select_dtypes(include=['object', 'bool']).columns
@@ -50,7 +49,7 @@ def main(df_path, path):
         axes_num[2*i + 1].set_title(f'Box plot of {col}')
 
     plt.tight_layout()  # Adjusts the plots to fit into the figure neatly
-    plt.savefig('data/num_plots.png')
+    plt.savefig(f'{save_to}/num_plots.png')
 
     # Plotting for categorical features
     num_plots_cat = len(categorical_features)  # One plot for each categorical feature
@@ -65,7 +64,9 @@ def main(df_path, path):
         axes_cat[j].set_ylabel('Count')
 
     plt.tight_layout()  # Adjusts the plots to fit into the figure neatly
-    plt.savefig('data/cat_plots.png')
+    plt.savefig(f'{save_to}/cat_plots.png')
+
+    df.to_pickle(f"{write_to}")
     
 # Example usage
 if __name__ == "__main__":
