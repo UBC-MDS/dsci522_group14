@@ -66,6 +66,13 @@ python scripts/model.py \
 jupyter-book build report
 cp -r report/_build/html/* docs
 ```
+
+## Clean-Up
+After finishing with a working session, copy and paste the following code below on your terminal to clean up the working space.
+```
+docker compose down
+```
+
 ## Dependencies
 
 -   `conda` (version 23.7.4 or higher)
