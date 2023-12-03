@@ -16,7 +16,9 @@ Our dataset exhibits a significant imbalance. The imbalanced nature of the data 
 
 ## Report
 
-Our final report can be found here. - PDF: <https://github.com/UBC-MDS/fraud_detection/blob/main/fraud_detection.pdf> - HTML: <https://github.com/UBC-MDS/fraud_detection/blob/main/fraud_detection.html> (Can be rendered locally)
+Our final report can be found here. 
+- PDF: <https://github.com/UBC-MDS/fraud_detection/blob/main/fraud_detection.pdf>
+- HTML: <https://github.com/UBC-MDS/fraud_detection/blob/main/fraud_detection.html> (Can be rendered locally)
 
 ## Quick Start (Docker)
 
