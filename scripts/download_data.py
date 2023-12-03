@@ -11,7 +11,6 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 @click.command()
 @click.option('--url', type=str, help="URL of dataset to be downloaded")
 @click.option('--write-to', type=str, help="Path to directory where raw data will be written to")
-
 def main(url, write_to):
     """Downloads data from a URL and writes it to a specified directory"""
     df = download_data(url)

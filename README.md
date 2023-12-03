@@ -57,8 +57,8 @@ Licenses used in this project are listed below. More detailed information can be
 ```
 # download and extract data
 python scripts/download_data.py \
-   --url= \
-   --write-to=
+   --url="https://github.com/CapitalOneRecruiting/DS/blob/173ca4399629f1e4e74146107eb9bef1e7009741/transactions.zip?raw=true" \
+   --write-to=data/transactions.pkl.zip
 
 # Exploratory data analysis and data wrangling
 python scripts/eda.py \
