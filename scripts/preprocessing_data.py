@@ -17,9 +17,9 @@ from sklearn.pipeline import make_pipeline
 
 @click.command()
 @click.option('--df-path', type=str, help="Path to retreive processed data from EDA")
-@click.option('--path', type=str, help="Path to directory where preprocessed data will be written to")
+@click.option('--write-to', type=str, help="Path to directory where preprocessed data will be written to")
 
-def main(df_path, path):
+def main(df_path, write_to):
       df = load_data(df_path)
     
       categorical_features = ['accountNumber',
@@ -37,12 +37,11 @@ def main(df_path, path):
                   'transactionType',
                   'cardPresent',
                   'expirationDateKeyInMatch',
-                  'isFraud',
-                  'CVVmatched'
+                  'isFraud'
                   ]
       
       count_df = count_unique_numbers(df, categorical_features)
-      count_df.to_pickle(path+"/preprocessed/count_df.pkl", compression='zip')
+      count_df.to_pickle(write_to+"/preprocessed/count_df.pkl", compression='zip')
     
       numerical_features = ['creditLimit', 'availableMoney', 'transactionAmount', 'currentBalance']
 
@@ -70,13 +69,13 @@ def main(df_path, path):
 
       ct = column_transformer(categorical_features, numerical_features, credit_feature, drop_features)
 
-      with open(path+"/transformers/ct.pkl", 'wb') as pickle_file:
+      with open(write_to+"/transformers/ct.pkl", 'wb') as pickle_file:
             pickle.dump(ct, pickle_file)
 
-      X_train.to_pickle(path+"/preprocessed/X_train.pkl", compression='zip')
-      X_test.to_pickle(path+"/preprocessed/X_test.pkl", compression='zip')
-      y_train.to_pickle(path+"/preprocessed/y_train.pkl", compression='zip')
-      y_test.to_pickle(path+"/preprocessed/y_test.pkl", compression='zip')
+      X_train.to_pickle(write_to+"/preprocessed/X_train.pkl", compression='zip')
+      X_test.to_pickle(write_to+"/preprocessed/X_test.pkl", compression='zip')
+      y_train.to_pickle(write_to+"/preprocessed/y_train.pkl", compression='zip')
+      y_test.to_pickle(write_to+"/preprocessed/y_test.pkl", compression='zip')
 
       transformed_df = ct.fit_transform(X_train)
 
@@ -88,7 +87,7 @@ def main(df_path, path):
       
       transformed_X_train = pd.DataFrame(transformed_df.toarray(), columns=column_names)
       
-      transformed_X_train.to_pickle(path+"/preprocessed/transformed_X_train.pkl", compression='zip')
+      transformed_X_train.to_pickle(write_to+"/preprocessed/transformed_X_train.pkl", compression='zip')
 
 
 def column_transformer(
