@@ -53,6 +53,35 @@ python scripts/download_data.py --url="https://github.com/CapitalOneRecruiting/D
 
 Licenses used in this project are listed below. More detailed information can be found at `LICENSE.md`. - MIT License - Copyright (c) 2023 Master of Data Science at the University of British Columbia
 
+## Usage
+```
+# download and extract data
+python scripts/download_data.py \
+   --url="https://github.com/CapitalOneRecruiting/DS/blob/173ca4399629f1e4e74146107eb9bef1e7009741/transactions.zip?raw=true" \
+   --write-to=data/transactions.pkl.zip
+
+# Exploratory data analysis and data wrangling
+python scripts/eda.py \
+   -- \
+   -- \
+   -- \
+
+# Perform additional data preprocessing to avoid curse of dimensionality
+python scripts/preprocessing_data.py \
+   --df-path-data=data/raw_processed.pkl \
+   --path=data
+
+# train model, create visualize tuning, and save plot and model
+python scripts/modeling.py \
+   -- \
+   -- \
+   -- \
+
+# build HTML report and copy build to docs folder
+jupyter-book build report
+cp -r report/_build/html/* docs
+```
+
 ## Disclaimer
 
 The overall format of `README.md` is retrieved from the [sample project repository](https://github.com/ttimbers/breast_cancer_predictor_py/tree/0.0.1).
