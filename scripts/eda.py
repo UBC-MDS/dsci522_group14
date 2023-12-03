@@ -5,6 +5,7 @@ import warnings
 warnings.filterwarnings('ignore')
 import click 
 
+
 @click.command()
 @click.option('--df-path', type=str, help="Path to get the downloaded dataset")
 @click.option('--path', type=str, help="Path to directory where raw data will be written to")
@@ -31,7 +32,6 @@ def main(df_path, path):
     df.to_pickle(directory)
     empty_string_counts = df.apply(lambda column: (column == '').sum())
     print(empty_string_counts)
-
     # Selecting numerical and categorical features
     numerical_features = df.select_dtypes(include=['int64', 'float64']).columns
     categorical_features = df.select_dtypes(include=['object', 'bool']).columns
@@ -66,7 +66,8 @@ def main(df_path, path):
 
     plt.tight_layout()  # Adjusts the plots to fit into the figure neatly
     plt.savefig('data/cat_plots.png')
-
+    
 # Example usage
 if __name__ == "__main__":
+  
     main()
