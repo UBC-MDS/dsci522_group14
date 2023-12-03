@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Fraudulent Card Transaction Classifier Based On Capital One Synthetic Data &#8212; Credit Card Fraud Detection</title>
   
@@ -339,12 +339,12 @@ document.write(`
 <section class="tex2jax_ignore mathjax_ignore" id="summary">
 <h1>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h1>
 <p>Through this project, we attempted to construct three classification models capable of distinguishing between fraudulent and non-fraudulent transactions, as indicated on customer accounts. The models we experimented with include logistic regression, random forest classifier, and gradient boost classifier. The conclusions derived from our analysis are circumscribed by the substantial imbalance within the original dataset. Nevertheless, we have put forth prospective measures to rectify this imbalance in our data.</p>
-<table class="colwidths-auto table">
+<table class="table">
 <thead>
-<tr class="row-odd"><th class="text-left head"><p></p></th>
-<th class="text-right head"><p>Logistic Regression</p></th>
-<th class="text-right head"><p>Random Forest Classifier</p></th>
-<th class="text-right head"><p>Gradient Boost Classifier</p></th>
+<tr class="row-odd"><th class="head text-left"><p></p></th>
+<th class="head text-right"><p>Logistic Regression</p></th>
+<th class="head text-right"><p>Random Forest Classifier</p></th>
+<th class="head text-right"><p>Gradient Boost Classifier</p></th>
 </tr>
 </thead>
 <tbody>
@@ -372,36 +372,129 @@ document.write(`
 <section id="data">
 <h3>Data<a class="headerlink" href="#data" title="Permalink to this heading">#</a></h3>
 <p>The data set used in this project is retrived from <span id="id3">[<a class="reference internal" href="#id6" title="Capital One. Capital One GitHub Repository: Capital One Data Science Challenge. 2018. In CapitalOneRecruiting GitHub Repository. URL: https://githom/CapitalOneRecruiting/DS.">One, 2018</a>]</span> public GitHub repository which consists of synthetically generated customer transaction histories. Each row of the set represents one transaction history. Transaction histories from the same customer can be recorded multiple times, but all transactions will have its own transaction ID.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Insert visualization/cat_plots.png</span>
-<span class="kn">from</span> <span class="nn">IPython</span> <span class="kn">import</span> <span class="n">display</span>
-<span class="n">display</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;../visualization/cat_plots.png&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
+<div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="_images/949ce2b62911c42880ea66ab59e741034eeb2d85c6924c5467ce24d29656f1fd.png" src="_images/949ce2b62911c42880ea66ab59e741034eeb2d85c6924c5467ce24d29656f1fd.png" />
+<img alt="_images/0958b446a0e855e89f2081277f33c8e057a9114c96c7f7702b8c813b158a9122.png" src="_images/0958b446a0e855e89f2081277f33c8e057a9114c96c7f7702b8c813b158a9122.png" />
 </div>
 </div>
 <p>Examining the visualization above, it’s evident that certain categorical features exhibit a significant imbalance in class distribution, notably the <code class="docutils literal notranslate"><span class="pre">isFraud</span></code> column. To address this, we will undertake additional preprocessing steps on the data.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Insert visualization/num_plots.png</span>
-</pre></div>
-</div>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="_images/43fb81e91dc0a50d8c7d4f7f20986df55237bc08979e93e4c0a80cd5b9399e8c.png" src="_images/43fb81e91dc0a50d8c7d4f7f20986df55237bc08979e93e4c0a80cd5b9399e8c.png" />
 </div>
 </div>
 <p>We also see significantly skewed distributions of our numerical features. Thus, we will be using <em>median</em> as our measure of central tendency when standardizing the numerical features.</p>
 </section>
 <section id="preprocessing">
 <h3>Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Insert data/preprocessed/count_df.csv</span>
-</pre></div>
-</div>
-</div>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>feature</th>
+      <th>unique_entry_counts</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>cardLast4Digits</td>
+      <td>5246</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>accountNumber</td>
+      <td>5000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>customerId</td>
+      <td>5000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>merchantName</td>
+      <td>2490</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>dateOfLastAddressChange</td>
+      <td>2184</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>accountOpenDate</td>
+      <td>1820</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>currentExpDate</td>
+      <td>165</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>merchantCategoryCode</td>
+      <td>19</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>posEntryMode</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>acqCountry</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>merchantCountryCode</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>posConditionCode</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>transactionType</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>cardPresent</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>expirationDateKeyInMatch</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>isFraud</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>As seen from the dataframe above, we have seen way too many unique entries for a few categorical features, including <code class="docutils literal notranslate"><span class="pre">accountNumber</span></code> and <code class="docutils literal notranslate"><span class="pre">customerId</span></code>. Thus we will apply a function to narrow down the number of unique entries; once the number of unique entries in a column is <strong>greater than 10</strong>, <code class="docutils literal notranslate"><span class="pre">generalize_categories</span></code> function will classify entries that appear less than 10% in our dataset as “Others”.</p>
 <p>To reduce the number of features, we decided to drop <code class="docutils literal notranslate"><span class="pre">currentExpDate</span></code> and <code class="docutils literal notranslate"><span class="pre">dateOfLastAddressChange</span></code>, where none of the entries have frequency of 10% or higher. We decided to drop the two columns as they seem to carry little to no predictive power.</p>
@@ -411,18 +504,132 @@ document.write(`
 </section>
 <section id="results">
 <h2>Results<a class="headerlink" href="#results" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add data/preprocessed/model_table.csv</span>
-</pre></div>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>rank_test_score</th>
+      <th>mean_test_score</th>
+      <th>mean_train_score</th>
+      <th>param_logisticregression__C</th>
+      <th>param_logisticregression__solver</th>
+      <th>mean_fit_time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>0.062271</td>
+      <td>0.062268</td>
+      <td>0.01</td>
+      <td>newton-cholesky</td>
+      <td>7.329305</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>0.062249</td>
+      <td>0.062264</td>
+      <td>0.01</td>
+      <td>lbfgs</td>
+      <td>12.698590</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>0.062030</td>
+      <td>0.062123</td>
+      <td>0.10</td>
+      <td>lbfgs</td>
+      <td>8.510266</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>0.062027</td>
+      <td>0.062116</td>
+      <td>0.10</td>
+      <td>newton-cholesky</td>
+      <td>6.836031</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>0.062017</td>
+      <td>0.062116</td>
+      <td>1.00</td>
+      <td>newton-cholesky</td>
+      <td>5.989916</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>0.062014</td>
+      <td>0.062116</td>
+      <td>10.00</td>
+      <td>newton-cholesky</td>
+      <td>6.465390</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>7</td>
+      <td>0.062013</td>
+      <td>0.062116</td>
+      <td>100.00</td>
+      <td>newton-cholesky</td>
+      <td>8.452624</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>8</td>
+      <td>0.061975</td>
+      <td>0.062117</td>
+      <td>100.00</td>
+      <td>lbfgs</td>
+      <td>8.718760</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>9</td>
+      <td>0.061970</td>
+      <td>0.062118</td>
+      <td>1.00</td>
+      <td>lbfgs</td>
+      <td>9.220388</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>10</td>
+      <td>0.061964</td>
+      <td>0.062116</td>
+      <td>10.00</td>
+      <td>lbfgs</td>
+      <td>10.012676</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add visualization/score_comparison.png </span>
-</pre></div>
-</div>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="_images/a13c783fc18217e4f868d4709320343a4f956d410bdabd8440d902c081d4a8ed.png" src="_images/a13c783fc18217e4f868d4709320343a4f956d410bdabd8440d902c081d4a8ed.png" />
 </div>
 </div>
 <p>In our effort to distinguish between fraudulent and non-fraudulent transactions in customer accounts, we evaluated three classification models: Logistic Regression, Random Forest Classifier, and Gradient Boost Classifier. The primary challenge was the extreme imbalance in our dataset.</p>
@@ -487,14 +694,16 @@ document.write(`
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
 <div class="docutils container" id="id4">
-<dl class="citation">
-<dt class="label" id="id6"><span class="brackets">One18</span><span class="fn-backref">(<a href="#id2">1</a>,<a href="#id3">2</a>)</span></dt>
-<dd><p>Capital One. <em>Capital One GitHub Repository: Capital One Data Science Challenge</em>. 2018. In CapitalOneRecruiting GitHub Repository. URL: <a class="reference external" href="https://githom/CapitalOneRecruiting/DS">https://githom/CapitalOneRecruiting/DS</a>.</p>
-</dd>
-<dt class="label" id="id7"><span class="brackets"><a class="fn-backref" href="#id1">JackCaporal23</a></span></dt>
-<dd><p>Jack Caporal. Identity theft and credit card fraud statistics for 2023. <em>The Ascent: A Motely Fool Service</em>, 2023. URL: <a class="reference external" href="https://www.fool.com/the-ascent/research/identity-theft-credit-card-fraud-statistics/">https://www.fool.com/the-ascent/research/identity-theft-credit-card-fraud-statistics/</a>.</p>
-</dd>
-</dl>
+<div class="citation" id="id6" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>One18<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id2">1</a>,<a role="doc-backlink" href="#id3">2</a>)</span>
+<p>Capital One. <em>Capital One GitHub Repository: Capital One Data Science Challenge</em>. 2018. In CapitalOneRecruiting GitHub Repository. URL: <a class="reference external" href="https://githom/CapitalOneRecruiting/DS">https://githom/CapitalOneRecruiting/DS</a>.</p>
+</div>
+<div class="citation" id="id7" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">JackCaporal23</a><span class="fn-bracket">]</span></span>
+<p>Jack Caporal. Identity theft and credit card fraud statistics for 2023. <em>The Ascent: A Motely Fool Service</em>, 2023. URL: <a class="reference external" href="https://www.fool.com/the-ascent/research/identity-theft-credit-card-fraud-statistics/">https://www.fool.com/the-ascent/research/identity-theft-credit-card-fraud-statistics/</a>.</p>
+</div>
+</div>
 </div>
 </section>
 </section>
