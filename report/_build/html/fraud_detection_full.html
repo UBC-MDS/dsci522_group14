@@ -307,8 +307,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Fraudulent Card Transaction Classifier Based On <code class="docutils literal notranslate"><span class="pre">Capital</span> <span class="pre">One</span></code> Synthetic Data</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a></li>
@@ -319,9 +318,6 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion">Discussion</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
-</li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -335,9 +331,12 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="fraudulent-card-transaction-classifier-based-on-capital-one-synthetic-data">
 <h1>Fraudulent Card Transaction Classifier Based On <code class="docutils literal notranslate"><span class="pre">Capital</span> <span class="pre">One</span></code> Synthetic Data<a class="headerlink" href="#fraudulent-card-transaction-classifier-based-on-capital-one-synthetic-data" title="Permalink to this heading">#</a></h1>
 <p>By Jenny Lee, Shawn Hu, Koray Tecimer &amp; Iris Luo 2023/12/01</p>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="summary">
-<h1>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h1>
+<div class="cell tag_remove-input docutils container">
+</div>
+<div class="cell tag_remove-input docutils container">
+</div>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
 <p>Through this project, we attempted to construct three classification models capable of distinguishing between fraudulent and non-fraudulent transactions, as indicated on customer accounts. The models we experimented with include logistic regression, random forest classifier, and gradient boost classifier. The conclusions derived from our analysis are circumscribed by the substantial imbalance within the original dataset. Nevertheless, we have put forth prospective measures to rectify this imbalance in our data.</p>
 <table class="table">
 <thead>
@@ -361,34 +360,39 @@ document.write(`
 </tbody>
 </table>
 <p>Given the close results of the three models, this report centers on logistic regression. This choice is informed by logistic regression’s swift implementation and broad interpretability, making it accessible for general audience while more suited in practical business settings.</p>
+</section>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
-<p>In recent times, credit card fraud has emerged as one of the most prevalent forms of fraudulent activities. According to <span id="id1">[<a class="reference internal" href="#id7" title="Jack Caporal. Identity theft and credit card fraud statistics for 2023. The Ascent: A Motely Fool Service, 2023. URL: https://www.fool.com/the-ascent/research/identity-theft-credit-card-fraud-statistics/.">Jack Caporal, 2023</a>]</span> the incidence of credit card fraud has seen a significant rise, escalating from 371,000 reports in 2017 to 1.4 million in 2021. To combat this surge in credit card fraud, corporations have turned to machine learning algorithms, employing them to automatically detect and filter fraudulent transactions. These models are trained on historical data to identify potential fraud.</p>
-<p>This project is driven by the goal of constructing an effective fraud detection model to mitigate the occurrence of credit card frauds. The <span id="id2">[<a class="reference internal" href="#id6" title="Capital One. Capital One GitHub Repository: Capital One Data Science Challenge. 2018. In CapitalOneRecruiting GitHub Repository. URL: https://githom/CapitalOneRecruiting/DS.">One, 2018</a>]</span> data set is utilized for building our model, consisting of 786,363 entries of synthetically generated data. Since all the data is synthetically generated, we ensure that customer confidentiality is maintained throughout the model-building process.</p>
+<p>In recent times, credit card fraud has emerged as one of the most prevalent forms of fraudulent activities. According to <span id="id1">[<a class="reference internal" href="#id11" title="Jack Caporal. Identity theft and credit card fraud statistics for 2023. The Ascent: A Motely Fool Service, 2023. URL: https://www.fool.com/the-ascent/research/identity-theft-credit-card-fraud-statistics/.">Jack Caporal, 2023</a>]</span> the incidence of credit card fraud has seen a significant rise, escalating from 371,000 reports in 2017 to 1.4 million in 2021. To combat this surge in credit card fraud, corporations have turned to machine learning algorithms, employing them to automatically detect and filter fraudulent transactions. These models are trained on historical data to identify potential fraud.</p>
+<p>This project is driven by the goal of constructing an effective fraud detection model to mitigate the occurrence of credit card frauds. The <span id="id2">[<a class="reference internal" href="#id10" title="Capital One. Capital One GitHub Repository: Capital One Data Science Challenge. 2018. In CapitalOneRecruiting GitHub Repository. URL: https://githom/CapitalOneRecruiting/DS.">Capital One, 2018</a>]</span> data set is utilized for building our model, consisting of 786,363 entries of synthetically generated data. Since all the data is synthetically generated, we ensure that customer confidentiality is maintained throughout the model-building process.</p>
 <p>Our dataset includes information on customer transaction histories, including transaction date, transaction partner, transaction amount, the location where transaction was made, and much more. In total, it contains 28 variables that can be used as a feature and 1 target value. However, this data is significantly imbalanced in favor of non-fraudelent transactions, impacting the interpretability of our results.</p>
+<p>We used Python programming language <span id="id3">[<a class="reference internal" href="#id9" title="Guido Van Rossum and Fred L. Drake. Python 3 Reference Manual. CreateSpace, Scotts Valley, CA, 2009. ISBN 1441412697.">Van Rossum and Drake, 2009</a>]</span> to conduct our analysis. Also used computing tools and methods available from Scikit-learn <span id="id4">[<a class="reference internal" href="#id14" title="F. Pedregosa, G. Varoquaux, A. Gramfort, V. Michel, B. Thirion, O. Grisel, M. Blondel, P. Prettenhofer, R. Weiss, V. Dubourg, J. Vanderplas, A. Passos, D. Cournapeau, M. Brucher, M. Perrot, and E. Duchesnay. Scikit-learn: Machine Learning in Python. Journal of Machine Learning Research, 12:2825–2830, 2011.">Pedregosa <em>et al.</em>, 2011</a>]</span> and Scipy <span id="id5">[<a class="reference internal" href="#id12" title="Wes McKinney and Others. Data structures for statistical computing in python. in proceedings of the 9th python in science conference. Scipy2010, 2010. URL: https://conference.scipy.org/proceedings/scipy2010/mckinney.html.">Wes McKinney and Others, 2010</a>]</span>. As a disclaimer, in generating this report we referred to Dr. Tiffany Timber’s <span id="id6">[<a class="reference internal" href="#id13" title="Joel Ostblom Tiffany Timbers, Melissa Lee. Breast Cancer Predictor. 2023. Sample GitHub repository provided from the 522 teaching team. URL: https://github.com/ttimbers/breast_cancer_predictor_py/tree/0.0.1.">Tiffany Timbers, 2023</a>]</span> sample repository provided as a course material in DSCI 522 at the University of British Columbia.</p>
 </section>
 <section id="methods">
 <h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
 <section id="data">
 <h3>Data<a class="headerlink" href="#data" title="Permalink to this heading">#</a></h3>
-<p>The data set used in this project is retrived from <span id="id3">[<a class="reference internal" href="#id6" title="Capital One. Capital One GitHub Repository: Capital One Data Science Challenge. 2018. In CapitalOneRecruiting GitHub Repository. URL: https://githom/CapitalOneRecruiting/DS.">One, 2018</a>]</span> public GitHub repository which consists of synthetically generated customer transaction histories. Each row of the set represents one transaction history. Transaction histories from the same customer can be recorded multiple times, but all transactions will have its own transaction ID.</p>
-<div class="cell tag_remove-input docutils container">
-<div class="cell_output docutils container">
-<img alt="_images/0958b446a0e855e89f2081277f33c8e057a9114c96c7f7702b8c813b158a9122.png" src="_images/0958b446a0e855e89f2081277f33c8e057a9114c96c7f7702b8c813b158a9122.png" />
-</div>
-</div>
+<p>The data set used in this project is retrived from <span id="id7">[<a class="reference internal" href="#id10" title="Capital One. Capital One GitHub Repository: Capital One Data Science Challenge. 2018. In CapitalOneRecruiting GitHub Repository. URL: https://githom/CapitalOneRecruiting/DS.">Capital One, 2018</a>]</span> public GitHub repository which consists of synthetically generated customer transaction histories. Each row of the set represents one transaction history. Transaction histories from the same customer can be recorded multiple times, but all transactions will have its own transaction ID.</p>
+<figure class="align-default" id="cat-plots">
+<a class="reference internal image-reference" href="_images/cat_plots.png"><img alt="_images/cat_plots.png" src="_images/cat_plots.png" style="width: 500px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Categorical feature distribution examination</span><a class="headerlink" href="#cat-plots" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Examining the visualization above, it’s evident that certain categorical features exhibit a significant imbalance in class distribution, notably the <code class="docutils literal notranslate"><span class="pre">isFraud</span></code> column. To address this, we will undertake additional preprocessing steps on the data.</p>
-<div class="cell tag_remove-input docutils container">
-<div class="cell_output docutils container">
-<img alt="_images/43fb81e91dc0a50d8c7d4f7f20986df55237bc08979e93e4c0a80cd5b9399e8c.png" src="_images/43fb81e91dc0a50d8c7d4f7f20986df55237bc08979e93e4c0a80cd5b9399e8c.png" />
-</div>
-</div>
+<figure class="align-default" id="num-plots">
+<a class="reference internal image-reference" href="_images/num_plots.png"><img alt="_images/num_plots.png" src="_images/num_plots.png" style="height: 700px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Categorical feature distribution examination</span><a class="headerlink" href="#num-plots" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>We also see significantly skewed distributions of our numerical features. Thus, we will be using <em>median</em> as our measure of central tendency when standardizing the numerical features.</p>
 </section>
 <section id="preprocessing">
 <h3>Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this heading">#</a></h3>
 <div class="cell tag_remove-input docutils container">
-<div class="cell_output docutils container">
+</div>
+<figure class="align-default" id="count-df" style="width: 400px">
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -494,11 +498,13 @@ document.write(`
     </tr>
   </tbody>
 </table>
-</div></div></div>
-</div>
+</div></div><figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Count of unique observations present in each categorical features</span><a class="headerlink" href="#count-df" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>As seen from the dataframe above, we have seen way too many unique entries for a few categorical features, including <code class="docutils literal notranslate"><span class="pre">accountNumber</span></code> and <code class="docutils literal notranslate"><span class="pre">customerId</span></code>. Thus we will apply a function to narrow down the number of unique entries; once the number of unique entries in a column is <strong>greater than 10</strong>, <code class="docutils literal notranslate"><span class="pre">generalize_categories</span></code> function will classify entries that appear less than 10% in our dataset as “Others”.</p>
 <p>To reduce the number of features, we decided to drop <code class="docutils literal notranslate"><span class="pre">currentExpDate</span></code> and <code class="docutils literal notranslate"><span class="pre">dateOfLastAddressChange</span></code>, where none of the entries have frequency of 10% or higher. We decided to drop the two columns as they seem to carry little to no predictive power.</p>
-<p>As seen from the distribution of numerical columns above (refer to the boxplots), we can see that <code class="docutils literal notranslate"><span class="pre">creditLimit</span></code> column has a single outlier, whereas the other columns have multiple outliers. To intrapolate the missing values, we decided to use <code class="docutils literal notranslate"><span class="pre">strategy=&quot;median&quot;</span></code> for the other columns, and <code class="docutils literal notranslate"><span class="pre">strategy=&quot;mean&quot;</span></code> for <code class="docutils literal notranslate"><span class="pre">creditLimit</span></code>. This decision stems from the fact that median is a measure of central tendency that is more robust to outliers. Thus, we will be building two separate <code class="docutils literal notranslate"><span class="pre">SimpleImputer()</span></code> for each of mean and median strategies.</p>
+<p>As seen from the distribution of numerical columns above (refer to <a class="reference internal" href="#cat-plots"><span class="std std-numref">Figure 1</span></a>), we can see that <code class="docutils literal notranslate"><span class="pre">creditLimit</span></code> column has a single outlier, whereas the other columns have multiple outliers. To intrapolate the missing values, we decided to use <code class="docutils literal notranslate"><span class="pre">strategy=&quot;median&quot;</span></code> for the other columns, and <code class="docutils literal notranslate"><span class="pre">strategy=&quot;mean&quot;</span></code> for <code class="docutils literal notranslate"><span class="pre">creditLimit</span></code>. This decision stems from the fact that median is a measure of central tendency that is more robust to outliers. Thus, we will be building two separate <code class="docutils literal notranslate"><span class="pre">SimpleImputer()</span></code> for each of mean and median strategies.</p>
 <p>Our final transformed data has 52 features, which we will be using to build classification models.</p>
 </section>
 </section>
@@ -627,13 +633,25 @@ document.write(`
 </table>
 </div></div></div>
 </div>
-<div class="cell tag_remove-input docutils container">
-<div class="cell_output docutils container">
-<img alt="_images/a13c783fc18217e4f868d4709320343a4f956d410bdabd8440d902c081d4a8ed.png" src="_images/a13c783fc18217e4f868d4709320343a4f956d410bdabd8440d902c081d4a8ed.png" />
-</div>
-</div>
+<!-- ```{glue:figure} model_table_df
+:figwidth: 400px
+:name: "model_table_df"
+
+Count of unique observations present in each categorical features
+``` --><figure class="align-default" id="score-comparison">
+<a class="reference internal image-reference" href="_images/score_comparison.png"><img alt="_images/score_comparison.png" src="_images/score_comparison.png" style="height: 400px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Visualization of test and training scores of logistic regression</span><a class="headerlink" href="#score-comparison" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>In our effort to distinguish between fraudulent and non-fraudulent transactions in customer accounts, we evaluated three classification models: Logistic Regression, Random Forest Classifier, and Gradient Boost Classifier. The primary challenge was the extreme imbalance in our dataset.</p>
-<p>Based on the provided confusion matrices and F1 scores for the train and test sets, it is evident that there is a discrepancy in the performance of the machine learning model between the training and testing phases. For the training set, the model achieved an F1 score of 0.6024, which is a moderate score indicating a reasonable balance between precision and recall for the fraud class. However, the test set’s F1 score dropped significantly to 0.0343, suggesting that the model is not generalizing well to unseen data.</p>
+<p>Based on the provided confusion matrices and F1 scores for the train and test sets, it is evident that there is a discrepancy in the performance of the machine learning model between the training and testing phases. For the training set, themodel achieved an F1 score of 0.6024, which is a moderate score indicating a reasonable balance between precision and recall for the fraud class. However, the test set’s F1 score dropped significantly to 0.0343, suggesting that the model is not generalizing well to unseen data.</p>
+<figure class="align-default" id="confusion-matrix">
+<a class="reference internal image-reference" href="_images/confusion_matrix.png"><img alt="_images/confusion_matrix.png" src="_images/confusion_matrix.png" style="height: 400px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Confusion matrix of logistic regression</span><a class="headerlink" href="#confusion-matrix" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>The confusion matrix for the training data shows that the model identified a considerable number of true positives (4334) but also misclassified a significant number of non-fraud cases as fraud (5607). In contrast, the test confusion matrix reveals that while the model was conservative in predicting fraud (only 58 true positives), it also produced a large number of false negatives (2418), indicating many fraudulent transactions were not detected.</p>
 <p>Given these results, the selection of Logistic Regression over other models like Random Forest and Gradient Boost Classifier can be justified by its better performance in the training phase and its simplicity, which makes it easier to interpret and implement. Logistic Regression’s linear nature allows for a clear understanding of feature importance and the relationship between variables, which could be beneficial for further tuning and transparency in fraud detection systems.</p>
 </section>
@@ -693,15 +711,31 @@ document.write(`
 </section>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
-<div class="docutils container" id="id4">
-<div class="citation" id="id6" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>One18<span class="fn-bracket">]</span></span>
-<span class="backrefs">(<a role="doc-backlink" href="#id2">1</a>,<a role="doc-backlink" href="#id3">2</a>)</span>
+<div class="docutils container" id="id8">
+<div class="citation" id="id14" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">PVG+11</a><span class="fn-bracket">]</span></span>
+<p>F. Pedregosa, G. Varoquaux, A. Gramfort, V. Michel, B. Thirion, O. Grisel, M. Blondel, P. Prettenhofer, R. Weiss, V. Dubourg, J. Vanderplas, A. Passos, D. Cournapeau, M. Brucher, M. Perrot, and E. Duchesnay. Scikit-learn: Machine Learning in Python. <em>Journal of Machine Learning Research</em>, 12:2825–2830, 2011.</p>
+</div>
+<div class="citation" id="id13" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">TT23</a><span class="fn-bracket">]</span></span>
+<p>Joel Ostblom Tiffany Timbers, Melissa Lee. <em>Breast Cancer Predictor</em>. 2023. Sample GitHub repository provided from the 522 teaching team. URL: <a class="github reference external" href="https://github.com/ttimbers/breast_cancer_predictor_py/tree/0.0.1">ttimbers/breast_cancer_predictor_py</a>.</p>
+</div>
+<div class="citation" id="id9" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">VRD09</a><span class="fn-bracket">]</span></span>
+<p>Guido Van Rossum and Fred L. Drake. <em>Python 3 Reference Manual</em>. CreateSpace, Scotts Valley, CA, 2009. ISBN 1441412697.</p>
+</div>
+<div class="citation" id="id10" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>CapitalOne18<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id2">1</a>,<a role="doc-backlink" href="#id7">2</a>)</span>
 <p>Capital One. <em>Capital One GitHub Repository: Capital One Data Science Challenge</em>. 2018. In CapitalOneRecruiting GitHub Repository. URL: <a class="reference external" href="https://githom/CapitalOneRecruiting/DS">https://githom/CapitalOneRecruiting/DS</a>.</p>
 </div>
-<div class="citation" id="id7" role="doc-biblioentry">
+<div class="citation" id="id11" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">JackCaporal23</a><span class="fn-bracket">]</span></span>
 <p>Jack Caporal. Identity theft and credit card fraud statistics for 2023. <em>The Ascent: A Motely Fool Service</em>, 2023. URL: <a class="reference external" href="https://www.fool.com/the-ascent/research/identity-theft-credit-card-fraud-statistics/">https://www.fool.com/the-ascent/research/identity-theft-credit-card-fraud-statistics/</a>.</p>
+</div>
+<div class="citation" id="id12" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">WesMaOthers10</a><span class="fn-bracket">]</span></span>
+<p>Wes McKinney and Others. Data structures for statistical computing in python. in proceedings of the 9th python in science conference. <em>Scipy2010</em>, 2010. URL: <a class="reference external" href="https://conference.scipy.org/proceedings/scipy2010/mckinney.html">https://conference.scipy.org/proceedings/scipy2010/mckinney.html</a>.</p>
 </div>
 </div>
 </div>
@@ -753,8 +787,7 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Fraudulent Card Transaction Classifier Based On <code class="docutils literal notranslate"><span class="pre">Capital</span> <span class="pre">One</span></code> Synthetic Data</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a></li>
@@ -765,9 +798,6 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion">Discussion</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
-</li>
-</ul>
-
   </nav></div>
 
 </div></div>
