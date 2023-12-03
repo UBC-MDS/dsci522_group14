@@ -12,13 +12,13 @@ Through this project, we attempted to build three classification models capable 
 
 Our data is sourced from the [Capital One GitHub for Data Scientist Recruitment](https://github.com/CapitalOneRecruiting/DS). The data consists of 786,363 entries of synthetically generated data.
 
-<img src="visualization/isfraud.png" alt="drawing" width="500"/>
-
-As depicted in the graph above, our dataset exhibits a significant imbalance. The imbalanced nature of the data significantly affected the performance of our models, preventing them from achieving a high scoring metric value (f1).
+Our dataset exhibits a significant imbalance. The imbalanced nature of the data significantly affected the performance of our models, preventing them from achieving a high scoring metric value (f1).
 
 ## Report
 
-Our final report can be found here. - PDF: <https://github.com/UBC-MDS/fraud_detection/blob/main/fraud_detection.pdf> - HTML: <https://github.com/UBC-MDS/fraud_detection/blob/main/fraud_detection.html> (Can be rendered locally)
+Our final report can be found here. 
+- PDF: <https://github.com/UBC-MDS/fraud_detection/blob/main/fraud_detection.pdf>
+- HTML: <https://github.com/UBC-MDS/fraud_detection/blob/main/fraud_detection.html> (Can be rendered locally)
 
 ## Quick Start (Docker)
 
@@ -34,26 +34,9 @@ Run:
 docker-compose up
 ```
 
-Locate your url with token from the log and paste it in your browser to access container and project. Should be something like `http://127.0.0.1:8888/lab?token=token_hash`
+Locate your url with token from the log and paste it in your browser to access container and project. Should be something like `http://127.0.0.1:8888/lab?token=token_hash`. 
 
-To run the analysis you can run the commands below
-
-```         
-# Download and Write data:
-python scripts/download_data.py --url="https://github.com/CapitalOneRecruiting/DS/blob/173ca4399629f1e4e74146107eb9bef1e7009741/transactions.zip?raw=true" --write-to="data/transactions.pkl.zip"
-```
-
-## Dependencies
-
--   `conda` (version 23.7.4 or higher)
--   `nb_conda_kernels` (version 2.3.1 or higher)
--   Python packages listed in `environment.yml`.
-
-## License
-
-Licenses used in this project are listed below. More detailed information can be found at `LICENSE.md`. - MIT License - Copyright (c) 2023 Master of Data Science at the University of British Columbia
-
-## Usage
+To run the analysis you can run the commands below:
 ```
 # download and extract data
 python scripts/download_data.py \
@@ -62,9 +45,9 @@ python scripts/download_data.py \
 
 # Exploratory data analysis and data wrangling
 python scripts/eda.py \
-   -- \
-   -- \
-   -- \
+   --df-path=data/transactions/pkl.zip \
+   --save-to=visualization \
+   --write-to=data/preprocessed/eda_processed.pkl\
 
 # Perform additional data preprocessing to avoid curse of dimensionality
 python scripts/preprocessing_data.py \
@@ -73,14 +56,34 @@ python scripts/preprocessing_data.py \
 
 # train model, create visualize tuning, and save plot and model
 python scripts/modeling.py \
-   -- \
-   -- \
-   -- \
+   --df-path=data/preprocessed \
+   --ct-path=data/transformers/ct.pkl \
+   --table-to=data/preprocessed/model_tabel.csv\
+   -plot-to=visualization
 
 # build HTML report and copy build to docs folder
 jupyter-book build report
 cp -r report/_build/html/* docs
 ```
+## Dependencies
+
+-   `conda` (version 23.7.4 or higher)
+-   `nb_conda_kernels` (version 2.3.1 or higher)
+-   Python packages listed in `environment.yml`, including:
+```
+- pandas=1.3.2
+- scikit-learn=1.3.2
+- numpy=1.21.1
+- matplotlib=3.4.3
+- seaborn=0.11.2
+- pytest=7.4.3
+- click=8.1.7
+```
+
+## License
+
+Licenses used in this project are listed below. More detailed information can be found at `LICENSE.md`. - MIT License - Copyright (c) 2023 Master of Data Science at the University of British Columbia
+
 
 ## Disclaimer
 
