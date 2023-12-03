@@ -19,22 +19,22 @@ from sklearn.model_selection import RandomizedSearchCV
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import ConfusionMatrixDisplay
 @click.command()
-@click.option('--X_train', type=str, help="Path to X_train data")
-@click.option('--y_train', type=str, help="Path to y_train data")
+@click.option('--x_train_path', type=str, help="Path to X_train data")
+@click.option('--y_train_path', type=str, help="Path to y_train data")
 @click.option('--ct_path', type=str, help="Path to column transformer pickle data")
 @click.option('--seed', type=int, default=123, help="Random seed")
 @click.option('--model_save_path',type=str,help='Path of the model file to save')
-@click.option('--search_save_path',type=str,help='Path of the RandomizedSearchCV file to save')
-@click.option('--table-to', type=str, help="Path to directory where the table will be written to")
-@click.option('--plot-to', type=str, help="Path to directory where the plot will be written to")
+# @click.option('--search_save_path',type=str,help='Path of the RandomizedSearchCV file to save')
+@click.option('--table_to', type=str, help="Path to directory where the table will be written to")
+@click.option('--plot_to', type=str, help="Path to directory where the plot will be written to")
 def main(
-    X_train, y_train, ct_path, seed, model_save_path, search_save_path, table_to, plot_to
+    x_train_path, y_train_path, ct_path, seed, model_save_path, table_to, plot_to
 ):
-    with open(X_train, 'rb') as file:
-        X_train = pickle.load(file)
+    with open(x_train_path, 'rb') as file:
+        X_train = pd.read_pickle(x_train_path, compression="infer")
     
-    with open(y_train, 'rb') as file:
-        y_train = pickle.load(file)
+    with open(y_train_path, 'rb') as file:
+        y_train = pd.read_pickle(y_train_path, compression="infer")
 
 
     credit_feature=['creditLimit']
@@ -79,15 +79,15 @@ def main(
                                          "param_logisticregression__C", "param_logisticregression__solver", 
                                          "mean_fit_time"]].sort_values("rank_test_score").set_index("rank_test_score")
 
-    search_result.to_csv(search_save_path)
+    search_result.to_csv(table_to)
 
-    plot_result=ConfusionMatrixDisplay.from_estimator(logreg_search,X_train,y_train, values_format='d')
+    plot_result=ConfusionMatrixDisplay.from_estimator(random_search, X_train, y_train, values_format='d')
    
     # Plot the confusion matrix
     plot_result.plot(cmap='Blues', values_format='d')
 
     # Save the plot to a PNG file
-    plot_result.savefig('confusion_matrix_plot.png')
+    plot_result.savefig(plot_to)
 
 if __name__ == '__main__':
     main()
