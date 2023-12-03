@@ -65,12 +65,20 @@ python scripts/modeling.py \
 jupyter-book build report
 cp -r report/_build/html/* docs
 ```
-
 ## Dependencies
 
 -   `conda` (version 23.7.4 or higher)
 -   `nb_conda_kernels` (version 2.3.1 or higher)
--   Python packages listed in `environment.yml`.
+-   Python packages listed in `environment.yml`, including:
+```
+- pandas=1.3.2
+- scikit-learn=1.3.2
+- numpy=1.21.1
+- matplotlib=3.4.3
+- seaborn=0.11.2
+- pytest=7.4.3
+- click=8.1.7
+```
 
 ## License
 
