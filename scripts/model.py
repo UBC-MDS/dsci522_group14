@@ -31,10 +31,10 @@ def main(
     x_train_path, y_train_path, ct_path, seed, model_save_path, table_to, plot_to
 ):
     with open(x_train_path, 'rb') as file:
-        X_train = pd.read_pickle(x_train_path, compression="infer")
+        X_train = pd.read_pickle(x_train_path)
     
     with open(y_train_path, 'rb') as file:
-        y_train = pd.read_pickle(y_train_path, compression="infer")
+        y_train = pd.read_pickle(y_train_path)
 
 
     credit_feature=['creditLimit']
