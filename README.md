@@ -61,8 +61,9 @@ python scripts/download_data.py \
    --write-to=data/transactions.pkl.zip
 
 # Exploratory data analysis and data wrangling
-python scripts/eda.py \
-   -- \
+python scripts/eda.py \#
+## local test python scripts/eda.py --df-path data/transactions.pkl.zip --path ./data
+   -- \ 
    -- \
    -- \
 
