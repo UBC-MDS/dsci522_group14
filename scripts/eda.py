@@ -50,7 +50,7 @@ def main(df_path, path):
         axes_num[2*i + 1].set_title(f'Box plot of {col}')
 
     plt.tight_layout()  # Adjusts the plots to fit into the figure neatly
-    plt.savefig('data/num_plots.png')
+    plt.savefig(df_path+'/num_plots.png')
 
     # Plotting for categorical features
     num_plots_cat = len(categorical_features)  # One plot for each categorical feature
@@ -65,7 +65,7 @@ def main(df_path, path):
         axes_cat[j].set_ylabel('Count')
 
     plt.tight_layout()  # Adjusts the plots to fit into the figure neatly
-    plt.savefig('data/cat_plots.png')
+    plt.savefig(df_path+'/cat_plots.png')
     
 # Example usage
 if __name__ == "__main__":
