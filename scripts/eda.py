@@ -4,7 +4,7 @@ import pandas as pd
 import warnings
 warnings.filterwarnings('ignore')
 import click 
-##
+## change eda.py
 
 @click.command()
 @click.option('--df-path', type=str, help="Path to get the downloaded dataset")
@@ -23,7 +23,6 @@ def main(df_path, path):
     df = pd.read_pickle(df_path, compression="infer")
     # Process the DataFrame by counting and removing empty strings
     empty_string_counts = df.apply(lambda column: (column == '').sum())
-    print(empty_string_counts)
 
     columns_to_drop = [col for col, count in empty_string_counts.items() if count > 50000]
     columns_to_drop.extend(['echoBuffer', 'merchantCity', 'merchantZip', 'posOnPremises', 'recurringAuthInd', 'merchantState'])
