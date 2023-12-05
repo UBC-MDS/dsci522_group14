@@ -1,0 +1,17 @@
+feature,unique_entry_counts
+cardLast4Digits,5246
+accountNumber,5000
+customerId,5000
+merchantName,2490
+dateOfLastAddressChange,2184
+accountOpenDate,1820
+currentExpDate,165
+merchantCategoryCode,19
+posEntryMode,6
+acqCountry,5
+merchantCountryCode,5
+posConditionCode,4
+transactionType,4
+cardPresent,2
+expirationDateKeyInMatch,2
+isFraud,2
