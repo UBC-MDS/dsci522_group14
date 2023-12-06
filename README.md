@@ -17,8 +17,7 @@ Our dataset exhibits a significant imbalance. The imbalanced nature of the data 
 ## Report
 
 Our final report can be found here. 
-- PDF: <https://github.com/UBC-MDS/fraud_detection/blob/main/fraud_detection.pdf>
-- HTML: <https://github.com/UBC-MDS/fraud_detection/blob/main/fraud_detection.html> (Can be rendered locally)
+
 - Our final report can be found [here](https://ubc-mds.github.io/fraud_detection/fraud_detection_full.html). 
 
 ## Quick Start (Docker)
@@ -47,7 +46,7 @@ python scripts/download_data.py \
 # Exploratory data analysis and data wrangling
 python scripts/eda.py \
    --df-path=data/transactions.pkl.zip \
-   --save-to=visualization \
+   --save-to=results/plots \
    --write-to=data/preprocessed/eda_processed.pkl
 
 # Perform additional data preprocessing to avoid curse of dimensionality
@@ -59,8 +58,8 @@ python scripts/preprocessing_data.py \
 python scripts/model.py \
    --df-path=data/preprocessed \
    --ct-path=data/transformers/ct.pkl \
-   --table-to=data/preprocessed/model_tabel.csv\
-   --plot-to=visualization
+   --table-to=results/tables/model_tabel.csv\
+   --plot-to=results/plots
 
 # build HTML report and copy build to docs folder
 jupyter-book build report
