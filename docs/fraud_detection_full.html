@@ -374,14 +374,14 @@ document.write(`
 <h3>Data<a class="headerlink" href="#data" title="Permalink to this heading">#</a></h3>
 <p>The data set used in this project is retrived from <span id="id7">[<a class="reference internal" href="#id10" title="Capital One. Capital One GitHub Repository: Capital One Data Science Challenge. 2018. In CapitalOneRecruiting GitHub Repository. URL: https://githom/CapitalOneRecruiting/DS.">Capital One, 2018</a>]</span> public GitHub repository which consists of synthetically generated customer transaction histories. Each row of the set represents one transaction history. Transaction histories from the same customer can be recorded multiple times, but all transactions will have its own transaction ID.</p>
 <figure class="align-default" id="cat-plots">
-<a class="reference internal image-reference" href="../results/plots/cat_plots.png"><img alt="../results/plots/cat_plots.png" src="../results/plots/cat_plots.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="_images/cat_plots.png"><img alt="_images/cat_plots.png" src="_images/cat_plots.png" style="width: 500px;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 1 </span><span class="caption-text">Categorical feature distribution examination</span><a class="headerlink" href="#cat-plots" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Examining the visualization above, it’s evident that certain categorical features exhibit a significant imbalance in class distribution, notably the <code class="docutils literal notranslate"><span class="pre">isFraud</span></code> column. To address this, we will undertake additional preprocessing steps on the data.</p>
 <figure class="align-default" id="num-plots">
-<a class="reference internal image-reference" href="../results/plots/num_plots.png"><img alt="../results/plots/num_plots.png" src="../results/plots/num_plots.png" style="height: 700px;" /></a>
+<a class="reference internal image-reference" href="_images/num_plots.png"><img alt="_images/num_plots.png" src="_images/num_plots.png" style="height: 700px;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 2 </span><span class="caption-text">Categorical feature distribution examination</span><a class="headerlink" href="#num-plots" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -639,7 +639,7 @@ document.write(`
 
 Count of unique observations present in each categorical features
 ``` --><figure class="align-default" id="score-comparison">
-<a class="reference internal image-reference" href="../results/plots/score_comparison.png"><img alt="../results/plots/score_comparison.png" src="../results/plots/score_comparison.png" style="height: 400px;" /></a>
+<a class="reference internal image-reference" href="_images/score_comparison.png"><img alt="_images/score_comparison.png" src="_images/score_comparison.png" style="height: 400px;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 4 </span><span class="caption-text">Visualization of test and training scores of logistic regression</span><a class="headerlink" href="#score-comparison" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -647,7 +647,7 @@ Count of unique observations present in each categorical features
 <p>In our effort to distinguish between fraudulent and non-fraudulent transactions in customer accounts, we evaluated three classification models: Logistic Regression, Random Forest Classifier, and Gradient Boost Classifier. The primary challenge was the extreme imbalance in our dataset.</p>
 <p>Based on the provided confusion matrices and F1 scores for the train and test sets, it is evident that there is a discrepancy in the performance of the machine learning model between the training and testing phases. For the training set, themodel achieved an F1 score of 0.6024, which is a moderate score indicating a reasonable balance between precision and recall for the fraud class. However, the test set’s F1 score dropped significantly to 0.0343, suggesting that the model is not generalizing well to unseen data.</p>
 <figure class="align-default" id="confusion-matrix">
-<a class="reference internal image-reference" href="../results/plots/confusion_matrix.png"><img alt="../results/plots/confusion_matrix.png" src="../results/plots/confusion_matrix.png" style="height: 400px;" /></a>
+<a class="reference internal image-reference" href="_images/confusion_matrix.png"><img alt="_images/confusion_matrix.png" src="_images/confusion_matrix.png" style="height: 400px;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 5 </span><span class="caption-text">Confusion matrix of logistic regression</span><a class="headerlink" href="#confusion-matrix" title="Permalink to this image">#</a></p>
 </figcaption>
