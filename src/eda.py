@@ -21,7 +21,7 @@ def eda_process(df):
     passed to this function will be altered.
 
     Example usage:
-    >>> processed_df = process_dataframe(your_dataframe)
+    >>> processed_df = eda_process(your_dataframe)
     """
 
     def count_empty_strings(column):
@@ -40,6 +40,8 @@ def eda_process(df):
     columns_to_drop.extend(['echoBuffer', 'merchantCity', 'merchantZip', 'posOnPremises', 'recurringAuthInd', 'merchantState'])
 
     # Drop the columns
-    df.drop(columns=columns_to_drop, axis=1, inplace=True)
+    for col in columns_to_drop:
+        if col in df.columns:
+            df.drop(columns=col, axis=1, inplace=True)
 
     return df
