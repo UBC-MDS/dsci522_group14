@@ -51,13 +51,14 @@ python scripts/eda.py \
 # Perform additional data preprocessing to avoid curse of dimensionality
 python scripts/preprocessing_data.py \
    --df-path=data/preprocessed/eda_processed.pkl \
-   --write-to=data
+   --write-to=data \
+   --table-to=results/tables/count_df.csv
 
 # train model, create visualize tuning, and save plot and model
 python scripts/model.py \
    --df-path=data/preprocessed \
    --ct-path=data/transformers/ct.pkl \
-   --table-to=results/tables/model_tabel.csv\
+   --table-to=results/tables/model_table.csv\
    --plot-to=results/plots
 
 # build HTML report and copy build to docs folder

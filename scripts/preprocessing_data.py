@@ -18,8 +18,9 @@ from sklearn.pipeline import make_pipeline
 @click.command()
 @click.option('--df-path', type=str, help="Path to retreive processed data from EDA")
 @click.option('--write-to', type=str, help="Path to directory where preprocessed data will be written to")
+@click.option('--table-to', type=str, help="Path to directory where table will be written to")
 
-def main(df_path, write_to):
+def main(df_path, write_to, table_to):
       df = load_data(df_path)
     
       categorical_features = ['accountNumber',
@@ -41,7 +42,7 @@ def main(df_path, write_to):
                   ]
       
       count_df = count_unique_numbers(df, categorical_features)
-      count_df.to_pickle(write_to+"/preprocessed/count_df.pkl", compression='zip')
+      count_df.to_csv(table_to)
     
       numerical_features = ['creditLimit', 'availableMoney', 'transactionAmount', 'currentBalance']
 
