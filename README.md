@@ -71,6 +71,19 @@ After finishing with a working session, copy and paste the following code below 
 docker compose down
 ```
 
+## Tests
+To run the tests, navigate to project folder
+
+```         
+cd/to/fraud_detection
+```
+
+Run:
+
+```         
+pytest
+```
+
 ## Dependencies
 
 -   `conda` (version 23.7.4 or higher)
