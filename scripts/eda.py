@@ -31,20 +31,22 @@ def main(df_path, save_to, write_to):
     fig_num.suptitle('Numerical Features: Histograms and Box Plots', fontsize=18, fontweight='bold')
     plt.tight_layout()
     plt.savefig(f'{save_to}/num_plots.png')
+
     num_rows_cat = (len(categorical_features) + 3) // 4
     fig_cat, axes_cat = plt.subplots(num_rows_cat, 4, figsize=(20, 5 * num_rows_cat))
     axes_cat = axes_cat.ravel()
+
     for j, col in enumerate(categorical_features):
-    	counts = df[col].value_counts().nlargest(10)
-    	sns.barplot(x=counts.index, y=counts.values, ax=axes_cat[j])
-    	axes_cat[j].set_title(f'Frequency of Top 10 {col}')
-    	axes_cat[j].set_xticklabels(axes_cat[j].get_xticklabels(), rotation=45)
-    	axes_cat[j].set_ylabel('Count')
+        counts = df[col].value_counts().nlargest(10)
+        sns.barplot(x=counts.index, y=counts.values, ax=axes_cat[j])
+        axes_cat[j].set_title(f'Frequency of Top 10 {col}')
+        axes_cat[j].set_xticklabels(axes_cat[j].get_xticklabels(), rotation=45)
+        axes_cat[j].set_ylabel('Count')
     fig_cat.suptitle('Categorical Features: Frequency Plots', fontsize=18, fontweight='bold')
     plt.tight_layout()
     plt.savefig(f'{save_to}/cat_plots.png')
+
     # Ensure the write_to path includes a filename, e.g., 'processed_data.pkl'
     df.to_pickle(write_to)
-    
 if __name__ == "__main__":
-    sys.exit(main())
+	main()
