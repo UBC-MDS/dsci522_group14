@@ -26,8 +26,13 @@ Navigate to project folder
 cd/to/fraud_detection
 ```
 
-Run:
+Run options:
+1. Build container with make all
+```    
+docker-compose run --rm fraud_detection make -C work all
+```
 
+2. Build container without make all
 ```         
 docker-compose up
 ```
