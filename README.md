@@ -58,7 +58,7 @@ python scripts/preprocessing_data.py \
 python scripts/model.py \
    --df-path=data/preprocessed \
    --ct-path=data/transformers/ct.pkl \
-   --table-to=results/tables/model_table.csv\
+   --table-to=results/tables/model_table.csv \
    --plot-to=results/plots
 
 # build HTML report and copy build to docs folder
@@ -73,7 +73,7 @@ docker compose down
 ```
 
 ## Tests
-To run the tests, navigate to project folder
+To run the tests, navigate to project folder:
 
 ```         
 cd/to/fraud_detection
@@ -83,6 +83,11 @@ Run:
 
 ```         
 pytest
+```
+
+Or run from **root directory**:
+```
+tests/pytest
 ```
 
 ## Dependencies

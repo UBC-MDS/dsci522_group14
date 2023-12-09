@@ -75,6 +75,7 @@ def main(
     plt.xscale("log")
     # Adding a legend
     plt.legend()
+    # plt.title("Train and Test Score Comparison on Logistic Regression")
     plt.savefig(f"{plot_to}/score_comparison.png")
 
     plot_result=ConfusionMatrixDisplay.from_estimator(random_search, X_train, y_train, values_format='d')
@@ -83,11 +84,12 @@ def main(
     cm_fig = plot_result.plot(cmap='Blues', values_format='d')
     cm_fig.plot()
 
+    plt.title("Consufion Matrix on Logistic Regression")
     plt.savefig(f"{plot_to}/confusion_matrix.png")
 
     pr_curve = PrecisionRecallDisplay.from_estimator(
         random_search, X_train, y_train, name="Logistic Regression")
-    pr_curve.ax_.set_title("Precision-Recall curve for test set")
+    pr_curve.ax_.set_title("Precision-Recall Curve for Test Data")
     plt.savefig(f"{plot_to}/precision_recall.png")
 
 

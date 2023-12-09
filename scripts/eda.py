@@ -12,7 +12,6 @@ warnings.filterwarnings('ignore')
 def main(df_path, save_to, write_to):
     df = pd.read_pickle(df_path, compression="infer")
     empty_string_counts = df.apply(lambda column: (column == '').sum())
-    print(empty_string_counts)
     columns_to_drop = [col for col, count in empty_string_counts.items() if count > 50000]
     columns_to_drop.extend(['echoBuffer', 'merchantCity', 'merchantZip', 'posOnPremises', 'recurringAuthInd', 'merchantState'])
     df.drop(columns=columns_to_drop, axis=1, inplace=True)
@@ -46,7 +45,7 @@ def main(df_path, save_to, write_to):
         axes_cat[j].set_title(f'Frequency of Top 10 {col}')
         axes_cat[j].set_xticklabels(axes_cat[j].get_xticklabels(), rotation=45)
         axes_cat[j].set_ylabel('Count')
-    fig_cat.suptitle('Categorical Features: Frequency Plots', fontsize=18, fontweight='bold')
+    fig_cat.suptitle('Categorical Features: Frequency Plots', fontsize=18, fontweight='bold', y=0.05)
     plt.tight_layout()
     plt.savefig(f'{save_to}/cat_plots.png')
 
