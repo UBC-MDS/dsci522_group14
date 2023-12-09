@@ -75,7 +75,7 @@ def main(
     plt.xscale("log")
     # Adding a legend
     plt.legend()
-    # plt.title("Train and Test Score Comparison on Logistic Regression")
+    plt.title("Train and Test Score Comparison on Logistic Regression")
     plt.savefig(f"{plot_to}/score_comparison.png")
 
     plot_result=ConfusionMatrixDisplay.from_estimator(random_search, X_train, y_train, values_format='d')
