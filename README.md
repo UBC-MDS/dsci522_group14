@@ -20,7 +20,6 @@ Our final report can be found here.
 - Our final report can be found [here](https://ubc-mds.github.io/fraud_detection/fraud_detection_full.html). 
 
 ## Quick Start (Docker)
-
 Navigate to project folder
 
 ```         
@@ -35,7 +34,7 @@ docker-compose up
 
 Locate your url with token from the log and paste it in your browser to access container and project. Should be something like `http://127.0.0.1:8888/lab?token=token_hash`. 
 
-To run the analysis you can run the commands below:
+To run the analysis you can run the commands below, respectively:
 ```
 # download and extract data
 python scripts/download_data.py \
@@ -58,13 +57,14 @@ python scripts/preprocessing_data.py \
 python scripts/model.py \
    --df-path=data/preprocessed \
    --ct-path=data/transformers/ct.pkl \
-   --table-to=results/tables/model_table.csv\
+   --table-to=results/tables/model_table.csv \
    --plot-to=results/plots
 
 # build HTML report and copy build to docs folder
 jupyter-book build report
 cp -r report/_build/html/* docs
 ```
+Scripts above must be ran in **order**. If the script is out of order, final report will not be generated well. 
 
 ## Clean-Up
 After finishing with a working session, copy and paste the following code below on your terminal to clean up the working space.
@@ -73,7 +73,7 @@ docker compose down
 ```
 
 ## Tests
-To run the tests, navigate to project folder
+To run the tests, navigate to project folder:
 
 ```         
 cd/to/fraud_detection
@@ -83,6 +83,23 @@ Run:
 
 ```         
 pytest
+```
+
+Or run from **root directory**:
+```
+tests/pytest
+```
+
+## Using `Makefile`
+To generate the final report, please run the following command on terminal:
+```
+make all
+```
+Then you will be guided to the link that displays our report in Jupyter book format. The link should appear something that resembles the following format: `file:///Users/jennylee/.../report/_build/html/index.html`.
+
+To clean up all your working spaces and files generated from running the `make all` command, copy and paste the following command on terminal:
+```
+make clean
 ```
 
 ## Dependencies
