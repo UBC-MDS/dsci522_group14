@@ -42,7 +42,7 @@ def main(df_path, write_to, table_to):
                   ]
       
       count_df = count_unique_numbers(df, categorical_features)
-      count_df.to_csv(table_to)
+      count_df.to_csv(table_to, index=False)
     
       numerical_features = ['creditLimit', 'availableMoney', 'transactionAmount', 'currentBalance']
 

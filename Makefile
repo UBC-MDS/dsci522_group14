@@ -41,6 +41,7 @@ results/plots/score_comparison.png \
 results/tables/model_table.csv
 	jupyter-book build report
 	cp -r report/_build/html/* docs
+	if [ ! -f ".nojekyll" ]; then touch docs/.nojekyll; fi
 
 # clean up analysis
 clean :

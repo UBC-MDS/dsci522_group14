@@ -12,4 +12,5 @@ RUN conda install -y pandas=2.1.2 \
     click=8.1.7 \
     jupyter-book=0.15.1 \
     altair=5.1.2 \
-    jupyter-book=0.15.1 
+    jupyter-book=0.15.1 \
+    make
