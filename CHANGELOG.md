@@ -16,8 +16,10 @@
 
 ##### Edit Figures (@shawnhu444 by Thursday)
 - Change the name of the figure 1 and 2 as they seem to have the same name. 
+      - **Addressed**: https://github.com/UBC-MDS/fraud_detection/tree/9c2421cb53df9fed83bf1239a3730bd2a0a7d291
 - Add in title for figure 4.
       - All figure titles are now added along with figure numbers in Jupyter book. 
+      - **Addressed**: https://github.com/UBC-MDS/fraud_detection/tree/9c2421cb53df9fed83bf1239a3730bd2a0a7d291
 - Edit the subplots for figure 1 for easier interpretations. Add more columns rather than having it vertically linear in 1 column.
       - **Addressed**: https://github.com/UBC-MDS/fraud_detection/tree/64804a761a5b6e0b8cab9b06529e1ce3abbd4845
 
@@ -28,3 +30,4 @@
 #### Discarded Improvements:
 - Reduce repeated functions. For example: `download_data.py` should import `load_data` from `load_data.py` instead of redefining the function `load_data` inside `download_data.py`.
       - Reason for discarding: `download_data.py` and `load_data` function within `src` folder are written based on two different data formats; reusing `load_data` function instead of creating another script, `download_data.py`, is feasible.
+- 

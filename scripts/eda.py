@@ -45,7 +45,7 @@ def main(df_path, save_to, write_to):
         axes_cat[j].set_title(f'Frequency of Top 10 {col}')
         axes_cat[j].set_xticklabels(axes_cat[j].get_xticklabels(), rotation=45)
         axes_cat[j].set_ylabel('Count')
-    fig_cat.suptitle('Categorical Features: Frequency Plots', fontsize=18, fontweight='bold', y=0.05)
+    fig_cat.suptitle('Categorical Features: Frequency Plots', fontsize=18, fontweight='bold', y=0.99)
     plt.tight_layout()
     plt.savefig(f'{save_to}/cat_plots.png')
 
