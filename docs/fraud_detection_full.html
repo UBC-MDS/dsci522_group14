@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Fraudulent Card Transaction Classifier Based On Capital One Synthetic Data &#8212; Credit Card Fraud Detection</title>
   
@@ -338,12 +338,12 @@ document.write(`
 <section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
 <p>Through this project, we attempted to construct three classification models capable of distinguishing between fraudulent and non-fraudulent transactions, as indicated on customer accounts. The models we experimented with include logistic regression, random forest classifier, and gradient boost classifier. The conclusions derived from our analysis are circumscribed by the substantial imbalance within the original dataset. Nevertheless, we have put forth prospective measures to rectify this imbalance in our data.</p>
-<table class="colwidths-auto table">
+<table class="table">
 <thead>
-<tr class="row-odd"><th class="text-left head"><p></p></th>
-<th class="text-right head"><p>Logistic Regression</p></th>
-<th class="text-right head"><p>Random Forest Classifier</p></th>
-<th class="text-right head"><p>Gradient Boost Classifier</p></th>
+<tr class="row-odd"><th class="head text-left"><p></p></th>
+<th class="head text-right"><p>Logistic Regression</p></th>
+<th class="head text-right"><p>Random Forest Classifier</p></th>
+<th class="head text-right"><p>Gradient Boost Classifier</p></th>
 </tr>
 </thead>
 <tbody>
@@ -376,23 +376,21 @@ document.write(`
 <figure class="align-default" id="cat-plots">
 <a class="reference internal image-reference" href="_images/cat_plots.png"><img alt="_images/cat_plots.png" src="_images/cat_plots.png" style="width: 500px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Categorical feature distribution examination</span><a class="headerlink" href="#cat-plots" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Categorical features value distribution examination</span><a class="headerlink" href="#cat-plots" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Examining the visualization above, it’s evident that certain categorical features exhibit a significant imbalance in class distribution, notably the <code class="docutils literal notranslate"><span class="pre">isFraud</span></code> column. To address this, we will undertake additional preprocessing steps on the data.</p>
-<figure class="align-default" id="num-plots">
-<a class="reference internal image-reference" href="_images/num_plots.png"><img alt="_images/num_plots.png" src="_images/num_plots.png" style="height: 700px;" /></a>
+<figure class="align-default" id="num-plots" style="width: 700px">
+<img alt="_images/num_plots.png" src="_images/num_plots.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Categorical feature distribution examination</span><a class="headerlink" href="#num-plots" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Numerical features value distribution examination</span><a class="headerlink" href="#num-plots" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>We also see significantly skewed distributions of our numerical features. Thus, we will be using <em>median</em> as our measure of central tendency when standardizing the numerical features.</p>
 </section>
 <section id="preprocessing">
 <h3>Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this heading">#</a></h3>
-<div class="cell tag_remove-input docutils container">
-</div>
-<figure class="align-default" id="count-df" style="width: 400px">
+<figure class="align-default" id="count-df" style="width: 700px">
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -411,7 +409,6 @@ document.write(`
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>Unnamed: 0</th>
       <th>feature</th>
       <th>unique_entry_counts</th>
     </tr>
@@ -419,97 +416,81 @@ document.write(`
   <tbody>
     <tr>
       <th>0</th>
-      <td>11</td>
       <td>cardLast4Digits</td>
       <td>5246</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0</td>
       <td>accountNumber</td>
       <td>5000</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>1</td>
       <td>customerId</td>
       <td>5000</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>2</td>
       <td>merchantName</td>
       <td>2490</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>10</td>
       <td>dateOfLastAddressChange</td>
       <td>2184</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>9</td>
       <td>accountOpenDate</td>
       <td>1820</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>8</td>
       <td>currentExpDate</td>
       <td>165</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>7</td>
       <td>merchantCategoryCode</td>
       <td>19</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>5</td>
       <td>posEntryMode</td>
       <td>6</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>3</td>
       <td>acqCountry</td>
       <td>5</td>
     </tr>
     <tr>
       <th>10</th>
-      <td>4</td>
       <td>merchantCountryCode</td>
       <td>5</td>
     </tr>
     <tr>
       <th>11</th>
-      <td>6</td>
       <td>posConditionCode</td>
       <td>4</td>
     </tr>
     <tr>
       <th>12</th>
-      <td>12</td>
       <td>transactionType</td>
       <td>4</td>
     </tr>
     <tr>
       <th>13</th>
-      <td>13</td>
       <td>cardPresent</td>
       <td>2</td>
     </tr>
     <tr>
       <th>14</th>
-      <td>14</td>
       <td>expirationDateKeyInMatch</td>
       <td>2</td>
     </tr>
     <tr>
       <th>15</th>
-      <td>15</td>
       <td>isFraud</td>
       <td>2</td>
     </tr>
@@ -563,7 +544,7 @@ document.write(`
       <td>0.062268</td>
       <td>0.01</td>
       <td>newton-cholesky</td>
-      <td>3.022794</td>
+      <td>3.066093</td>
     </tr>
     <tr>
       <th>1</th>
@@ -572,7 +553,7 @@ document.write(`
       <td>0.062264</td>
       <td>0.01</td>
       <td>lbfgs</td>
-      <td>6.853638</td>
+      <td>7.214371</td>
     </tr>
     <tr>
       <th>2</th>
@@ -581,7 +562,7 @@ document.write(`
       <td>0.062123</td>
       <td>0.10</td>
       <td>lbfgs</td>
-      <td>6.599999</td>
+      <td>7.057718</td>
     </tr>
     <tr>
       <th>3</th>
@@ -590,7 +571,7 @@ document.write(`
       <td>0.062116</td>
       <td>0.10</td>
       <td>newton-cholesky</td>
-      <td>3.693679</td>
+      <td>4.436534</td>
     </tr>
     <tr>
       <th>4</th>
@@ -599,7 +580,7 @@ document.write(`
       <td>0.062116</td>
       <td>1.00</td>
       <td>newton-cholesky</td>
-      <td>3.818031</td>
+      <td>4.086613</td>
     </tr>
     <tr>
       <th>5</th>
@@ -608,7 +589,7 @@ document.write(`
       <td>0.062116</td>
       <td>10.00</td>
       <td>newton-cholesky</td>
-      <td>3.912977</td>
+      <td>3.734455</td>
     </tr>
     <tr>
       <th>6</th>
@@ -617,7 +598,7 @@ document.write(`
       <td>0.062116</td>
       <td>100.00</td>
       <td>newton-cholesky</td>
-      <td>3.971193</td>
+      <td>3.617449</td>
     </tr>
     <tr>
       <th>7</th>
@@ -626,7 +607,7 @@ document.write(`
       <td>0.062118</td>
       <td>100.00</td>
       <td>lbfgs</td>
-      <td>5.564678</td>
+      <td>5.497498</td>
     </tr>
     <tr>
       <th>8</th>
@@ -635,7 +616,7 @@ document.write(`
       <td>0.062116</td>
       <td>10.00</td>
       <td>lbfgs</td>
-      <td>6.234752</td>
+      <td>6.600160</td>
     </tr>
     <tr>
       <th>9</th>
@@ -644,7 +625,7 @@ document.write(`
       <td>0.062114</td>
       <td>1.00</td>
       <td>lbfgs</td>
-      <td>6.410570</td>
+      <td>6.688162</td>
     </tr>
   </tbody>
 </table>
@@ -669,7 +650,14 @@ Count of unique observations present in each categorical features
 <p><span class="caption-number">Fig. 5 </span><span class="caption-text">Confusion matrix of logistic regression</span><a class="headerlink" href="#confusion-matrix" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
+<figure class="align-default" id="precision-recall">
+<a class="reference internal image-reference" href="_images/precision_recall.png"><img alt="_images/precision_recall.png" src="_images/precision_recall.png" style="height: 400px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Precision-recall analysis of logistic regression</span><a class="headerlink" href="#precision-recall" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>The confusion matrix for the training data shows that the model identified a considerable number of true positives (4334) but also misclassified a significant number of non-fraud cases as fraud (5607). In contrast, the test confusion matrix reveals that while the model was conservative in predicting fraud (only 58 true positives), it also produced a large number of false negatives (2418), indicating many fraudulent transactions were not detected.</p>
+<p>The precision-recall curve (<a class="reference internal" href="#precision-recall"><span class="std std-numref">Figure 6</span></a>) also displays overall low scores of both precision and recall. However, given that precision_recall curve (PR curve) is based on a default threshold of 0.5, changing the threshold value from 0.5 to a lower value (to be more sensitive to the positive class) may improve the precision and recall scores.</p>
 <p>Given these results, the selection of Logistic Regression over other models like Random Forest and Gradient Boost Classifier can be justified by its better performance in the training phase and its simplicity, which makes it easier to interpret and implement. Logistic Regression’s linear nature allows for a clear understanding of feature importance and the relationship between variables, which could be beneficial for further tuning and transparency in fraud detection systems.</p>
 </section>
 <section id="discussion">
@@ -729,26 +717,32 @@ Count of unique observations present in each categorical features
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
 <div class="docutils container" id="id8">
-<dl class="citation">
-<dt class="label" id="id14"><span class="brackets"><a class="fn-backref" href="#id4">PVG+11</a></span></dt>
-<dd><p>F. Pedregosa, G. Varoquaux, A. Gramfort, V. Michel, B. Thirion, O. Grisel, M. Blondel, P. Prettenhofer, R. Weiss, V. Dubourg, J. Vanderplas, A. Passos, D. Cournapeau, M. Brucher, M. Perrot, and E. Duchesnay. Scikit-learn: Machine Learning in Python. <em>Journal of Machine Learning Research</em>, 12:2825–2830, 2011.</p>
-</dd>
-<dt class="label" id="id13"><span class="brackets"><a class="fn-backref" href="#id6">TT23</a></span></dt>
-<dd><p>Joel Ostblom Tiffany Timbers, Melissa Lee. <em>Breast Cancer Predictor</em>. 2023. Sample GitHub repository provided from the 522 teaching team. URL: <a class="github reference external" href="https://github.com/ttimbers/breast_cancer_predictor_py/tree/0.0.1">ttimbers/breast_cancer_predictor_py</a>.</p>
-</dd>
-<dt class="label" id="id9"><span class="brackets"><a class="fn-backref" href="#id3">VRD09</a></span></dt>
-<dd><p>Guido Van Rossum and Fred L. Drake. <em>Python 3 Reference Manual</em>. CreateSpace, Scotts Valley, CA, 2009. ISBN 1441412697.</p>
-</dd>
-<dt class="label" id="id10"><span class="brackets">CapitalOne18</span><span class="fn-backref">(<a href="#id2">1</a>,<a href="#id7">2</a>)</span></dt>
-<dd><p>Capital One. <em>Capital One GitHub Repository: Capital One Data Science Challenge</em>. 2018. In CapitalOneRecruiting GitHub Repository. URL: <a class="reference external" href="https://githom/CapitalOneRecruiting/DS">https://githom/CapitalOneRecruiting/DS</a>.</p>
-</dd>
-<dt class="label" id="id11"><span class="brackets"><a class="fn-backref" href="#id1">JackCaporal23</a></span></dt>
-<dd><p>Jack Caporal. Identity theft and credit card fraud statistics for 2023. <em>The Ascent: A Motely Fool Service</em>, 2023. URL: <a class="reference external" href="https://www.fool.com/the-ascent/research/identity-theft-credit-card-fraud-statistics/">https://www.fool.com/the-ascent/research/identity-theft-credit-card-fraud-statistics/</a>.</p>
-</dd>
-<dt class="label" id="id12"><span class="brackets"><a class="fn-backref" href="#id5">WesMaOthers10</a></span></dt>
-<dd><p>Wes McKinney and Others. Data structures for statistical computing in python. in proceedings of the 9th python in science conference. <em>Scipy2010</em>, 2010. URL: <a class="reference external" href="https://conference.scipy.org/proceedings/scipy2010/mckinney.html">https://conference.scipy.org/proceedings/scipy2010/mckinney.html</a>.</p>
-</dd>
-</dl>
+<div class="citation" id="id14" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">PVG+11</a><span class="fn-bracket">]</span></span>
+<p>F. Pedregosa, G. Varoquaux, A. Gramfort, V. Michel, B. Thirion, O. Grisel, M. Blondel, P. Prettenhofer, R. Weiss, V. Dubourg, J. Vanderplas, A. Passos, D. Cournapeau, M. Brucher, M. Perrot, and E. Duchesnay. Scikit-learn: Machine Learning in Python. <em>Journal of Machine Learning Research</em>, 12:2825–2830, 2011.</p>
+</div>
+<div class="citation" id="id13" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">TT23</a><span class="fn-bracket">]</span></span>
+<p>Joel Ostblom Tiffany Timbers, Melissa Lee. <em>Breast Cancer Predictor</em>. 2023. Sample GitHub repository provided from the 522 teaching team. URL: <a class="github reference external" href="https://github.com/ttimbers/breast_cancer_predictor_py/tree/0.0.1">ttimbers/breast_cancer_predictor_py</a>.</p>
+</div>
+<div class="citation" id="id9" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">VRD09</a><span class="fn-bracket">]</span></span>
+<p>Guido Van Rossum and Fred L. Drake. <em>Python 3 Reference Manual</em>. CreateSpace, Scotts Valley, CA, 2009. ISBN 1441412697.</p>
+</div>
+<div class="citation" id="id10" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>CapitalOne18<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id2">1</a>,<a role="doc-backlink" href="#id7">2</a>)</span>
+<p>Capital One. <em>Capital One GitHub Repository: Capital One Data Science Challenge</em>. 2018. In CapitalOneRecruiting GitHub Repository. URL: <a class="reference external" href="https://githom/CapitalOneRecruiting/DS">https://githom/CapitalOneRecruiting/DS</a>.</p>
+</div>
+<div class="citation" id="id11" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">JackCaporal23</a><span class="fn-bracket">]</span></span>
+<p>Jack Caporal. Identity theft and credit card fraud statistics for 2023. <em>The Ascent: A Motely Fool Service</em>, 2023. URL: <a class="reference external" href="https://www.fool.com/the-ascent/research/identity-theft-credit-card-fraud-statistics/">https://www.fool.com/the-ascent/research/identity-theft-credit-card-fraud-statistics/</a>.</p>
+</div>
+<div class="citation" id="id12" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">WesMaOthers10</a><span class="fn-bracket">]</span></span>
+<p>Wes McKinney and Others. Data structures for statistical computing in python. in proceedings of the 9th python in science conference. <em>Scipy2010</em>, 2010. URL: <a class="reference external" href="https://conference.scipy.org/proceedings/scipy2010/mckinney.html">https://conference.scipy.org/proceedings/scipy2010/mckinney.html</a>.</p>
+</div>
+</div>
 </div>
 </section>
 </section>
