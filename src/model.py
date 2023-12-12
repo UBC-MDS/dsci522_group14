@@ -17,7 +17,7 @@ from sklearn.model_selection import RandomizedSearchCV
 
 def run_model_with_random_search(
     X_train, y_train, numerical_features, credit_feature, categorical_features, 
-    drop_features, model_class, param_dist, n_iter=5, cv=2, scoring="f1"):
+    drop_features, model_class, param_dist, n_iter=5, cv=2, scoring="f1", need_class_weights=True):
     """
     Run a machine learning model with hyperparameter tuning using RandomizedSearchCV.
 
@@ -54,8 +54,7 @@ def run_model_with_random_search(
         raise ValueError("y_train must be a Series.")
     if X_train.shape[0] != y_train.shape[0]:
         raise ValueError("Number of rows in X_train and y_train must match.")
-    if X_train.shape[1] != len(numerical_features) + len(credit_feature) + len(categorical_features) + len(drop_features):
-        raise ValueError("Mismatch in the number of features.")
+    
     
     # Check for duplicate feature names
     all_features = set(numerical_features + credit_feature + categorical_features + drop_features)
@@ -87,29 +86,17 @@ def run_model_with_random_search(
         (OneHotEncoder(drop="if_binary", handle_unknown="ignore"), categorical_features),
         ("drop", drop_features)
     )
-    
-    pipe = make_pipeline(ct, model_class(class_weight="balanced"))
-    
+    if need_class_weights:
+        pipe = make_pipeline(ct, model_class(class_weight="balanced"))
+    else:
+        pipe = make_pipeline(ct, model_class())
     random_search = RandomizedSearchCV(
         pipe, param_dist, n_jobs=-1, n_iter=n_iter, cv=cv, scoring=scoring, return_train_score=True
     )
     
     return random_search
 
-param_dist_logreg = {"logisticregression__C": 10.0 ** np.arange(-2, 3),
-                     "logisticregression__solver": ["newton-cholesky", "lbfgs"]}
-logreg_search = run_model_with_random_search(X_train, y_train, numerical_features, credit_feature, categorical_features, drop_features, LogisticRegression, param_dist_logreg)
-logreg_search.fit(X_train, y_train)
 
-param_dist_rfclf = {"randomforestclassifier__n_estimators": 50 * np.array([1, 2, 4]),
-                   "randomforestclassifier__max_depth": [5, 10, 20, None],
-                   "randomforestclassifier__max_features": ['sqrt', 'log2']}
-rfclf_search = run_model_with_random_search(X_train, y_train, numerical_features, credit_feature, categorical_features, drop_features, RandomForestClassifier, param_dist_rfclf)
-rfclf_search.fit(X_train, y_train)
 
-param_dist_gbclf = {"gradientboostingclassifier__n_estimators": 50 * np.array([1, 2, 4]),
-                   "gradientboostingclassifier__max_depth": [3, 5, 10],
-                   "gradientboostingclassifier__learning_rate": [0.05, 0.1, 0.2]}
-gbclf_search = run_model_with_random_search(X_train, y_train, numerical_features, credit_feature, categorical_features, drop_features, GradientBoostingClassifier, param_dist_gbclf)
-gbclf_search.fit(X_train, y_train)
+
 

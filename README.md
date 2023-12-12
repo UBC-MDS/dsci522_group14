@@ -12,37 +12,120 @@ Through this project, we attempted to build three classification models capable 
 
 Our data is sourced from the [Capital One GitHub for Data Scientist Recruitment](https://github.com/CapitalOneRecruiting/DS). The data consists of 786,363 entries of synthetically generated data.
 
-<img src="visualization/isfraud.png" alt="drawing" width="500"/>
+Our dataset exhibits a significant imbalance. The imbalanced nature of the data significantly affected the performance of our models, preventing them from achieving a high scoring metric value (f1).
 
-As depicted in the graph above, our dataset exhibits a significant imbalance. The imbalanced nature of the data significantly affected the performance of our models, preventing them from achieving a high scoring metric value (f1).
+## Report
 
-## Usage
+Our final report can be found here. 
+- Our final report can be found [here](https://ubc-mds.github.io/fraud_detection/fraud_detection_full.html). 
 
-Below are the packages along with their detailed versions used in this project. To run the project, copy and paste the code provided into your local terminal.
-
-```         
-conda env create —f environment.yml
-```
-
-To run the project, copy and paste the commands below into your local terminal from the project's root directory.
+## Quick Start (Docker)
+Navigate to project folder
 
 ```         
-conda activate 522group14
-jupyter lab
+cd/to/fraud_detection
 ```
 
-Click on the `Run All` button once Jupyter Lab has been successfully launched.
+Run options:
+1. Build container with make all
+```    
+docker-compose run --rm fraud_detection make -C work all
+```
+
+2. Build container without make all
+```         
+docker-compose up
+```
+
+Locate your url with token from the log and paste it in your browser to access container and project. Should be something like `http://127.0.0.1:8888/lab?token=token_hash`. 
+
+To run the analysis you can run the commands below, respectively:
+```
+# download and extract data
+python scripts/download_data.py \
+   --url="https://github.com/CapitalOneRecruiting/DS/blob/173ca4399629f1e4e74146107eb9bef1e7009741/transactions.zip?raw=true" \
+   --write-to=data/transactions.pkl.zip
+
+# Exploratory data analysis and data wrangling
+python scripts/eda.py \
+   --df-path=data/transactions.pkl.zip \
+   --save-to=results/plots \
+   --write-to=data/preprocessed/eda_processed.pkl
+
+# Perform additional data preprocessing to avoid curse of dimensionality
+python scripts/preprocessing_data.py \
+   --df-path=data/preprocessed/eda_processed.pkl \
+   --write-to=data \
+   --table-to=results/tables/count_df.csv
+
+# train model, create visualize tuning, and save plot and model
+python scripts/model.py \
+   --df-path=data/preprocessed \
+   --ct-path=data/transformers/ct.pkl \
+   --table-to=results/tables/model_table.csv \
+   --plot-to=results/plots
+
+# build HTML report and copy build to docs folder
+jupyter-book build report
+cp -r report/_build/html/* docs
+```
+Scripts above must be ran in **order**. If the script is out of order, final report will not be generated well. 
+
+## Clean-Up
+After finishing with a working session, copy and paste the following code below on your terminal to clean up the working space.
+```
+docker compose down
+```
+
+## Tests
+To run the tests, navigate to project folder:
+
+```         
+cd/to/fraud_detection
+```
+
+Run:
+
+```         
+pytest
+```
+
+Or run from **root directory**:
+```
+tests/pytest
+```
+
+## Using `Makefile`
+To generate the final report, please run the following command on terminal:
+```
+make all
+```
+Then you will be guided to the link that displays our report in Jupyter book format. The link should appear something that resembles the following format: `file:///Users/jennylee/.../report/_build/html/index.html`.
+
+To clean up all your working spaces and files generated from running the `make all` command, copy and paste the following command on terminal:
+```
+make clean
+```
 
 ## Dependencies
 
 -   `conda` (version 23.7.4 or higher)
 -   `nb_conda_kernels` (version 2.3.1 or higher)
--   Python packages listed in `environment.yml`.
+-   Python packages listed in `environment.yml`, including:
+```
+- pandas=1.3.2
+- scikit-learn=1.3.2
+- numpy=1.21.1
+- matplotlib=3.4.3
+- seaborn=0.11.2
+- pytest=7.4.3
+- click=8.1.7
+```
 
 ## License
-Licenses used in this project are listed below. More detailed information can be found at `LICENSE.md`. 
-- MIT License
-- Copyright (c) 2023 Master of Data Science at the University of British Columbia
+
+Licenses used in this project are listed below. More detailed information can be found at `LICENSE.md`. - MIT License - Copyright (c) 2023 Master of Data Science at the University of British Columbia
+
 
 ## Disclaimer
 

@@ -1,0 +1,10 @@
+title: "Credit Card Fraud Detection"
+author: "Jenny Lee, Shawn X. Hu, Koray Tecimer, Iris Luo"
+date: "2023-12-03"
+sphinx:
+  config:
+    bibtex_reference_style: author_year
+execute:
+  execute_notebooks: force 
+bibtex_bibfiles:
+    - references.bib
